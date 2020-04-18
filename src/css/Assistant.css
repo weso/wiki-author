@@ -47,7 +47,7 @@
 
 .xs-tabs{
     display: grid;
-    grid-template-columns: 30% 25% 8% 8% 33% 10%;
+    grid-template-columns: 30% 20% 8% 8% 40% 10%;
     border-bottom: 1px solid #bdbcbc;
     font-size: 20px;
     color:#666565;
