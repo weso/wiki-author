@@ -1,6 +1,6 @@
 .xs-header{
     display: grid;
-    grid-template-columns: 12% 54.5% 9% 9% 9%;
+    grid-template-columns: 14% 64.5% 9% 5%;
     gap: 10px;
     padding: 8px;
     color: black;
@@ -13,7 +13,6 @@
     display: grid;
     grid-template-columns: 10% 66% 6.5% 6% 7%;
 }
-
 
 
 .name{

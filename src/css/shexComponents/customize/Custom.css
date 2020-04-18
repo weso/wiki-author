@@ -1,31 +1,3 @@
-.customShape{
-
-    color: black;
-    border-radius: 0px 0px 10px 10px;
-    display: grid;
-    grid-template-columns: 100%;
-
-}
-
-
-
-.customTriple{
-    padding: 5px;
-    color: black;
-    display: grid;
-    grid-template-columns: 100%;
-
-}
-
-
-
-.xs-customConstraint{
-    display: grid;
-    grid-template-columns: 26% 74%;
-    align-items: center;
-    margin-bottom: 1px;
-}
-
 .customConstraint{
     display: grid;
     grid-template-columns: 29% 71%;
