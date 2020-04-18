@@ -3,12 +3,22 @@ import {AppContext} from '../../../../../../App';
 import {ShapeContext} from '../ShapeComponent';
 import yasheUtils from '../../../../../../utils/yasheUtils';
 import Properties from '../../../../../../conf/properties';
-import {Typeahead} from 'react-bootstrap-typeahead';
 import '../../../../../../css/shexComponents/headers/TripleHeader.css';
 
+import $ from 'jquery';
 
 const primitives = ['String','Integer','Date','Boolean','Custom'];
 
+
+var API_ENDPOINT = 'https://www.wikidata.org/w/';
+var QUERY = {
+
+  action:'wbsearchentities',
+  language:(navigator.language || navigator.userLanguage).split("-")[0],
+  continue:0,
+  limit:10,
+  format: 'json',
+}
 
 function TripleHeader (props) {
 
@@ -16,7 +26,6 @@ function TripleHeader (props) {
     const shapeContext = useContext(ShapeContext);
     const styles = Properties.getInstance().getTripleStyle();
     const disabled = shapeContext.disabled;
-    const top100Films =[{id:'1',label:'Human',descr:'asdas'},{id:'2',label:'Human',descr:'asdas'}]
 
     const { triple,
             deleteTriple,
@@ -28,6 +37,7 @@ function TripleHeader (props) {
             } = props;
 
     const [name,setName] = useState(triple.type.value);
+    const [options,setOptions] = useState([]);
 
     const handleNameChange = function(e){
         const name = e.target.value;
@@ -45,27 +55,39 @@ function TripleHeader (props) {
     );
 
 
+const handleChange = function(e){
+        console.log(e.target.value)
+        QUERY.search = e.target.value;
+   $.get({
+        url: API_ENDPOINT + 'api.php?' + $.param(QUERY),
+        dataType: 'jsonp',
+   }).done((data)=>{
+           let hints=[];
+           let results = data.search;
+           if(results){
+                 Object.keys(results).map(d=>{
+                        hints.push({id:results[d].id,label:results[d].label,descr:results[d].description})
+                })
+           }
+
+        setOptions(hints);
+
+   })
+
+}
+
    
     return (
         <div className="xs-tripleHeader" style={styles.header}>
                     
-           <Typeahead
-           id='properties'
-                className='autoInput'
-                filterBy={['id','label','descr']}
-                labelKey="label"
-                options={top100Films}
-                maxResults = {10}
-                minLength={1}
-                placeholder="E.. or label"
-                renderMenuItemChildren={(option, props) => (
-                    <MenuItem key={option.id} item={option}/>
-                )}
-                useCache={false}
-                onChange={(selected) => {
-                   
-                }}
-            />
+           <div className="autocomplete">
+                <input id="myInput" type="text" name="myCountry" placeholder="Country" onChange={handleChange}/>
+                {
+                        Object.keys(options).map(o=>{
+                                return <MenuItem item={options[o]}/>
+                        })
+                }
+           </div>
 
 
             <button className="tripleBtns buildConstraint buildBtn buildTripleBtn mdc-icon-button material-icons"
