@@ -1,8 +1,8 @@
 {
-  "name": "my-app",
+  "name": "wiki-author",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://weso.github.io/shex-author",
+  "homepage": "https://weso.github.io/wiki-author",
   "dependencies": {
     "codemirror": "^5.52.2",
     "gh-pages": "^2.1.1",
