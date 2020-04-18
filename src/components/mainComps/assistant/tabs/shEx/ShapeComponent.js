@@ -2,7 +2,6 @@ import React,{useContext,useState} from 'react';
 import { Collapse } from 'reactstrap';
 import {AppContext} from '../../../../../App';
 import ShapeHeader from  './headers/ShapeHeader';
-import CustomComp from './customize/CustomComp';
 import TripleComponent from './TripleComponent';
 import Triple from '../../../../../entities/shexEntities/triple';
 import Properties from '../../../../../conf/properties';
@@ -16,7 +15,6 @@ function ShapeComponent (props) {
     const styles = Properties.getInstance().getShapeStyle();
 
     const [triples,setTriples] = useState(shape.triples);
-    const [isCustomOpen,setCustomOpen] = useState(false);
     const [isTriplesOpen,setTriplesOpen] = useState(true);
     const [colapseBtn,setColapseBtn] = useState('menu_open');
 
@@ -44,22 +42,8 @@ function ShapeComponent (props) {
     }
 
 
-    const customizeShape = function(){
-        //Completly collapsed shape open just customShape
-        if(!isCustomOpen && !isTriplesOpen ){
-            setCustomOpen(true);
-            setTriplesOpen(false);
-        }else{
-            //CustomShape opened  opens triples on collapse
-            setCustomOpen(!isCustomOpen);
-            setTriplesOpen(!isTriplesOpen);
-        }
-
-        setColapseBtn('menu');
-    }
 
     const collapseTriples = function(){
-        setCustomOpen(false);
         setTriplesOpen(!isTriplesOpen);
         
         if(colapseBtn=='menu'){
@@ -74,15 +58,8 @@ function ShapeComponent (props) {
         <ShapeContext.Provider value={{disabled:disabled,setDisabled:setDisabled}}>
             <div className="shape" style={styles.header}>
                 <ShapeHeader shape={shape} 
-                            customizeShape={customizeShape} 
                             collapseTriples={collapseTriples} 
                             colapseBtn={colapseBtn}/>
-
-                <CustomComp  entity={shape}
-                            isCustomOpen={isCustomOpen}
-                            qualifier={true}
-                            bnode={true}
-                            customClass="customShape"/>
 
                     
                 <Collapse  isOpen={isTriplesOpen}>
