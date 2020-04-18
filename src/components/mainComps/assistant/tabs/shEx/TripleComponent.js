@@ -54,7 +54,7 @@ function TripleComponent (props) {
 
     const collapseAll = function(collapse){
         setConstraintsOpen(collapse);
-        setFacetOpen(collapse);
+        setRefOpen(collapse);
         setCardinalityOpen(collapse);
     }
 
