@@ -1,0 +1,458 @@
+.assistCollapse{
+    border-bottom: 1px solid #acaaaa;
+    border-top:1px solid #acaaaa;
+    margin-left: 0px;
+}
+
+.containerAssist{
+    display: grid;
+    grid-template-rows: auto 100%;
+}
+
+.edit{
+    border-top: 1px solid #acaaaa;
+    border-bottom: 1px solid #acaaaa;
+    border-right: 1px solid #acaaaa;
+    border-radius: 0px 10px 10px 0px!important;
+}
+
+
+.containerAssist{
+    width: 100% !important;
+    height: 100% !important;
+    display: grid;
+    grid-template-columns: 100%;
+    padding: 0px;
+    background-color: #ffffff;
+    
+}
+
+.assistantContainer{
+    height: 94% !important;
+}
+
+
+.showAsist{
+    padding: 2%;
+    height: 100% !important;
+    width: 100% !important;
+
+}
+
+
+.asisTitleClose{
+    display: grid;
+    grid-template-columns: 72% 10%;
+}
+
+.xs-tabs{
+    display: grid;
+    grid-template-columns: 35% 25% 8% 8% 25% 10%;
+    border-bottom: 1px solid #bdbcbc;
+    font-size: 20px;
+    color:#666565;
+    max-height: 34px;
+}
+
+.tabs{
+    display: grid;
+    grid-template-columns: 28% 15% 6% 6% 55% 10%;
+}
+
+.activeTab {
+    /*fce8e8*/
+    background-color: #f1f4f5 !important;
+  }
+
+.tablink{
+    background-color: transparent;
+    border:none;
+    text-align: start;
+    border-radius: 0px 0px 8px 0px;
+    border-right: 1px double gray;
+}
+
+.tablink:hover{
+    background-color: #f1f1f1;
+}
+
+.tablink:focus{
+    outline: none;
+}
+
+.closeAsisBtn{
+    background-color: transparent;
+    border:none;
+    grid-column: 2/2;
+}
+
+.closeAsisBtn:focus{
+    outline: none;
+}
+
+
+
+.shape{
+    border: 1px solid #acaaaa;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+label{
+	font-weight: bold;
+	margin-top: 10px;
+	margin-left:10px;
+	margin-right:-50px; 
+}
+
+.xs-label{
+    margin-left: 0px;
+}
+
+
+.triples{
+    color: black;
+    text-align: left;
+    border-radius: 0px 0px 10px 10px ;
+    display: grid;
+    grid-template-columns: 100%; 
+
+}
+
+/*
+.tripleSlot{
+    border-top: 1px solid #acaaaa;
+    background: #EFDECD;
+    color: black;
+    text-align: left;
+    border-radius: 0px 0px 10px 10px ;
+    display: grid;
+    grid-template-columns: 100%; 
+    margin-bottom: 10px;
+}*/
+
+
+
+
+.hidden{
+    display: none;
+}
+
+
+.constraint{
+    padding: 8px;
+    color: black;
+    border-top: 1px solid #acaaaa;
+}
+
+.constraintCollapse{
+    grid-column: 2/4;
+    color: black;
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.shapeRef{
+    padding: 8px;
+    color: black;
+    border-top: 1px solid #acaaaa;
+}
+
+.globalFacet{
+    border-top: 1px solid #acaaaa;
+    padding: 8px; 
+}
+
+.facetCont{
+    display: grid;
+}
+
+.facetInputs{
+    display: grid;
+    grid-template-columns: 55% 33% 12%;
+    padding-top: 4px;
+}
+
+.deleteFacetBtn{
+    border-radius: 10px;
+    outline: none;
+    border: none;
+
+}
+
+.deleteFacetBtn:focus{
+    outline: none;
+}
+
+
+.deleteFacetBtn:hover{
+    transform: scale(1.1);
+}
+
+.deleteFacetBtn:active {
+    transform: translateY(4px);
+}
+
+
+.cardinality{
+    padding: 8px;
+    color: black;
+    border-top: 1px solid #acaaaa;
+}
+
+.gridLabel{
+    grid-column: 2/3;
+}
+
+
+.rangeCardinality{
+    grid-column: 2/4;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 28% 71%;
+    gap:5px;
+    margin-top: 5px;
+}
+
+
+/* ADD BUTTONS */
+
+.addCont{
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+
+
+.xs-addShapeButton{
+    margin-left:100px;
+    margin-right: 100px;
+    border-radius: 10px;
+    font-weight: bold;
+    -webkit-transition: margin 0.5s ease-in-out;
+    transition: margin 0.5s ease-in-out;
+}
+
+.xs-addShapeButton:hover{
+    margin-left:0px;
+    margin-right: 0px;
+}
+
+
+.xs-addShapeButton:focus{
+    outline: none;
+}
+
+.addShapeButton{
+    margin-left:200px;
+    margin-right: 200px;
+}
+
+.xs-addTripleButton{
+    margin-left:130px;
+    margin-right: 130px;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 1px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    -webkit-transition: margin 0.5s ease-in-out;
+    transition: margin 0.5s ease-in-out;
+}
+
+.xs-addTripleButton:hover{
+    margin-left:0px;
+    margin-right: 0px;
+}
+
+
+.xs-addTripleButton:focus{
+    outline: none;
+}
+
+
+.addTripleButton{
+    margin-left:200px;
+    margin-right: 200px;
+}
+
+
+
+
+.addFacet{ 
+    background:white;
+    color: #222;
+    border-radius: 10px;
+/*    background:#f7bebe;*/
+    margin-top:6px;
+}
+
+.addFacet:focus{
+    outline: none;
+}
+
+
+.shape{
+
+    border: 1px solid #acaaaa;
+    border-radius: 10px;
+}
+
+.danger {
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
+    font-size: 15px;
+  }
+
+  .valid{
+    display: none;
+  }
+
+
+
+  *, *::after, *::before {
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-app-region: no-drag;
+    cursor: default;
+}
+
+
+.showLoader{
+    margin-top: 200px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 100% !important;
+    height: 93% !important;
+  }
+
+  .loader {
+    border: 16px solid #f3f3f3; 
+    border-top: 16px solid #3498db;
+    border-bottom: 16px solid #3498db; 
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .hideAsist{
+    display: none;
+}
+
+.hideLoader{
+    display: none;
+}
+
+
+.hideError{
+    display: none;
+}
+
+.hideConvert{
+    display: none;
+}
+
+.showConvert{
+    margin-top: 50px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+
+
+.infoAssist{
+    margin-top: 150px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.showError{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 90% !important;
+    width: 100% !important;
+}
+
+
+.shapeErrorCont{
+    display: grid;
+    grid-template-rows: 85% 20%;
+    height: 200px;
+}
+
+.shapeError{
+    background: url('./imgs/error--v1.png');
+    background-position: center; 
+    background-repeat: no-repeat;
+    height: 100%;
+   
+}
+
+/*
+
+
+.showAsist{
+        padding: 2%;
+        height: 100% !important;
+        width: 100% !important;
+    }
+
+    
+
+
+   
+
+  
+*/
+
+
+/*
+3d3d3d negro boton build
+*/
+
+
+
+
+
+    /*
+    .roundme{
+        border-radius: 10px;
+    }
+            
+    .un-roundme{
+        border-radius: 10px 10px 0px 0px !important;
+    }
+*/
+
+    
+
+   
+       
+/*
+
+    @media (max-width: 2040px) {
+        .assistantContainer{
+            display: grid;
+            grid-template-columns: 100%;
+            align-content: center;
+            gap: 10px;
+            padding: 2%;
+            background-color: red;
+        }
+      }
+
+      */

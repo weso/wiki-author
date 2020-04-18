@@ -1,0 +1,97 @@
+.xs-header{
+    display: grid;
+    grid-template-columns: 12% 54.5% 9% 9% 9%;
+    gap: 10px;
+    padding: 8px;
+    color: black;
+    text-align: left;
+    border-radius: 10px;
+    border:none;
+}
+
+.header{
+    display: grid;
+    grid-template-columns: 10% 66% 6.5% 6% 7%;
+}
+
+
+
+.name{
+    border-radius: 4px;
+    color:#222;
+    padding-left: 10px;
+    border: 1px solid #acaaaa !important;
+    height: 40px;
+}
+
+.react-inputs-validation__textbox__input___20hDL{
+    border-radius: 4px;
+    color:#222;
+    padding-left: 10px;
+    border: 1px solid #acaaaa !important;
+    height: 40px;
+    font-size: 15px !important;
+    width: 100%;
+}
+
+.react-inputs-validation__error___2aXSp{
+    font-size: 12px;
+    color:red;
+}
+
+
+
+.buildBtn{
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    font-size: 25px;
+}
+
+
+.buildBtn:focus{
+    outline: none;
+}
+
+
+.buildBtn:hover{
+    transform: scale(1.1);
+}
+
+.buildBtn:active {
+    transform: translateY(4px);
+}
+
+.deleteShapeBtn{
+    border-radius: 10px;
+    outline: none;
+    border: none;
+
+}
+
+.deleteShapeBtn:focus{
+    outline: none;
+}
+
+
+.deleteShapeBtn:hover{
+    transform: scale(1.1);
+}
+
+.deleteShapeBtn:active {
+    transform: translateY(4px);
+}
+
+
+
+.collapseBtn{
+    background: transparent;
+    border-radius: 10px;
+    border: none;
+    height: 100%;
+    font-size: 25px;
+}
+
+.collapseBtn:focus{
+    outline: none;
+}

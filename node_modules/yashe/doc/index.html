@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YASHE</title>
+<link rel="icon"  type="image/png" href="imgs/favicon.png">
+  <link href="doc.min.css" rel="stylesheet" type="text/css" />
+  <style>
+
+  </style>
+  </head>
+  <body data-spy="scroll" data-target="#sidebarmenu">
+
+  <a href="https://github.com/weso/YASHE" target="_blank"><img style="z-index: 11111; position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+      <a class="navbar-brand" href="../">YASHE</a>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+			<li class="active"><a href="#l">Documentation</a></li>
+			<li><a target="_blank" href="http://shex.io/webapps/shex-author/">ShExAuthor</a></li>
+            <li><a target="_blank" href="https://www.linkedin.com/in/pablo-menéndez-suárez-106262a7/">About me</a></li>
+			<li><a target="_blank" href="http://yasqe.yasgui.org/">Original YASQE</a></li>
+		</ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+   <div class="container" role="main">
+   <div class="row">
+   <div class="col-md-9">
+
+		<h1>Documentation</h1>
+		YASHE extends the <a href="http://codemirror.net/" target="_blank">CodeMirror Library</a>. For a complete overview of the functionality they offer (such as event hooks), check out the  <a href="http://codemirror.net/4/doc/manual.html" target="_blank">CodeMirror Documentation</a>.
+		Below we elaborate on the functionality YASHE offers (in addition to the CodeMiror API).
+		<br><small>Note: Where CodeMirror provides <code>CodeMirror</code> in the global namespace, we provide <code>YASHE</code>.</small>
+
+
+     	<h2 id="gettingStarted">Getting Started</h2>
+     	<p>Initialize YASHE via its constructor, or via the command <code>fromTextArea</code>. Both return in instance of YASHE, from now on referred to as <code>yashe</code> (lowercase). Both function take as argument a config object. See the section on <a href="#config">defaults</a> for more information on this config object.</p>
+     	<div class="doc">
+     		<code>YASHE(parent: DOM-Element, settings: Object) → YASHE instance: yashe</code>
+     		<p>Main YASHE constructor. Pass a DOM element as argument to append the editor to, and (optionally) pass along config settings (see the YASHE.defaults object below, as well as the regular CodeMirror documentation, for more information on configurability)</p>
+
+     	</div>
+     	<div class="doc">
+     		<code>YASHE.fromTextArea(textArea: DOM element, config: Object) → YASHE instance: yashe</code>
+     		<p>Initialize YASHE from an existing text area (see <a href="http://codemirror.net/doc/manual.html#fromTextArea" target="_blank">CodeMirror</a> for more info)</p>
+   		</div>
+     	<h3 id="gists">Examples</h3>
+     	<div id="gistContainer">
+
+		 </div>
+		 
+	
+		<h2 id="config">Configuration</h2>
+		This configuration object is accessible/changeable via <code>YASHE.defaults</code> and <code>yashe.options</code>, and you can pass these along when initializing YASHE as well.
+		Other than the configuration we describe here, check the <a href="http://codemirror.net" target="_blank">CodeMirror</a> documentation for even more options you can set, such as disabling line numbers, or changing keyboard shortcut keys.
+		<h3 id="defaults">Defaults</h3> 
+		<div class="doc" >
+		   <code>
+		   var yashe = YASHE(document.getElementById('domId'), {<br>
+			   value:'Starting value of the editor',<br>
+			   mode:'shex',<br>
+			   theme:'wiki', //dark <br>
+			   lineNumbers: true,<br>
+			   lineWrapping: true,<br>
+			   fontSize: 14,<br> 
+			   cursorHeight:15,<br>
+			   firstLineNumber:1,<br>
+			   readOnly:false,<br>
+			   showCursorWhenSelecting:fasle,<br>
+			   tabMode: 'indent',<br>
+			   collapsePrefixesOnLoad: false,<br>
+			   matchBrackets: true,<br>
+			   fixedGutter: true,<br>
+			   syntaxErrorCheck: true,<br>
+			   showTooltip: true,<br>
+			   showUploadButton: true,<br>
+			   showDownloadButton: true,<br>
+			   showCopyButton: true,<br>
+			   showDeleteButton: true,<br>
+			   showThemeButton: true,<br>
+			   showFullScreenButton: true,<br>
+			   persistent: null,<br>
+			   extraKeys: {<br>
+				 "Ctrl-Space": YASHE.autoComplete,<br>
+				 "Cmd-Space": YASHE.autoComplete,<br>
+				 "Ctrl-D": YASHE.deleteLine,<br>
+				 "Cmd-K": YASHE.deleteLine,<br>
+				 "Ctrl-/": YASHE.commentLines,<br>
+				 "Cmd-/": YASHE.commentLines,<br>
+				 "Ctrl-Down": YASHE.copyLineDown,<br>
+				 "Ctrl-Up": YASHE.copyLineUp,<br>
+				 "Cmd-Down": YASHE.copyLineDown,<br>
+				 "Cmd-Up": YASHE.copyLineUp,<br>
+				 "Shift-Ctrl-F": YASHE.doAutoFormat,<br>
+				 "Shift-Cmd-F": YASHE.doAutoFormat,<br>
+				 "Ctrl-S": YASHE.storeContent,<br>
+				 "Cmd-S": YASHE.storeConten,<br>
+				 "Ctrl-Enter": YASHE.executeQuery,<br>
+				 "Cmd-Enter": YASHE.executeQuery,<br>
+				 }
+			 });
+	   </code>
+
+	   </div>
+
+	   <h2 id="events">Events</h2>
+	   <div class="doc">
+		   <code>"change" (instance: CodeMirror, changeObj: object)</code>
+		   <p>Fires every time the content of the editor is changed</p>
+	   </div>
+	   <div class="doc">
+		   <code>"cursorActivity" (instance: CodeMirror)</code>
+		   <p>Will be fired when the cursor or selection moves, or any change is made to the editor content</p>
+	   </div>
+	   <div class="doc">
+		   <code>"keyHandled" (instance: CodeMirror, name: string, event: Event)</code>
+		   <p>Fired after a key is handled through a key map. name is the name of the handled key (for example "Ctrl-X" or "'q'"), and event is the DOM keydown or keypress event</p>
+	   </div>
+	   <div class="doc">
+		   <code>"focus" (instance: CodeMirror, event: Event)</code>
+		   <p>Fires whenever the editor is focused</p>
+	   </div>
+	   <div class="doc">
+			<code>"blur" (instance: CodeMirror, event: Event)
+			</code>
+			<p>Fires whenever the editor is unfocused</p>
+		</div>
+		<div class="doc">
+			<code>"scroll" (instance: CodeMirror)</code>
+			<p>Fires when the editor is scrolled</p>
+		</div>
+		<div class="doc">
+			<code>refresh</code>
+			<p>Fires when the editor is refreshed or resized. Mostly useful to invalidate cached values that depend on the editor or character size</p>
+		</div>
+		<div class="doc">
+			<code>"optionChange" (instance: CodeMirror, option: string)</code>
+			<p>Dispatched every time an option is changed with setOption</p>
+		</div>
+		<div class="doc">
+			<code>"upload"(instance: CodeMirror) </code>
+			<p>Fires after uploading a file by the upload button</p>
+		</div>
+		<div class="doc">
+			<code>"download"(instance: CodeMirror) </code>
+			<p>Fires after downloading a file by the upload button</p>
+		</div>
+		<div class="doc">
+			<code>"copy"(instance: CodeMirror) </code>
+			<p>Fires after downloading a file by the download button</p>
+		</div>
+		<div class="doc">
+			<code>"changeTheme"(instance: CodeMirror) </code>
+			<p>Fires after changing the editor theme using the change theme button</p>
+		</div>
+		<div class="doc">
+			<code>"delete"(instance: CodeMirror) </code>
+			<p>Fires after deleting the editor content by the delete buttton</p>
+		</div>
+		<div class="doc">
+			<code>"expandScreen"(instance: CodeMirror) </code>
+			<p>Fires after expanding screen</p>
+		</div>
+		<div class="doc">
+			<code>"collapseScreen"(instance: CodeMirror) </code>
+			<p>Fires after collapsing screen</p>
+		</div>
+
+		<h3 id="event-handlers">Event Handlers</h3> 
+		<code>cm.on(type: string, func: (...args))</code>
+		<p>Register an event handler for the given event type (a string) on the editor instance. There is also a CodeMirror.on(object, type, func) version that allows registering of events on any object</p>
+		<code>yashe.on('blur', function(yashe) {<br>
+			console.log('The editor has been unfocused!');<br>
+		   });<br>
+		</code>
+		<br>
+		<code>cm.off(type: string, func: (...args))</code>
+		<p>Remove an event handler on the editor instance. An equivalent CodeMirror.off(object, type, func) also exists.</p>
+		<code>yashe.off('blur');<br>
+		</code>
+		<h3 id="fire-events">Fire your own events</h3> 
+		<p>CodeMirror.signal(target, name, args...)</p>
+		<code>Codemirror.signal(yashe,'myOwnEvent'args...);</code>
+
+		<h2 id="api">API</h2>
+		API methods accessible via the <code>yashe</code> instance
+	   <div class="doc">
+		   <code>yashe.setValue(query: String)</code>
+		   <p>Set query value in editor (<a href="http://codemirror.net/doc/manual.html#setValue" target="_blank">see also</a>)</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.getValue() → query: String</code>
+		   <p>Get query value from editor (<a href="http://codemirror.net/doc/manual.html#getValue" target="_blank">see also</a>)</p>
+	   </div>
+
+	   <div class="doc">
+		   <code>yashe.getLine(n: integer) → string</code>
+		   <p>Get the content of line n</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.lineCount() → integer</code>
+		   <p>Get the number of lines in the editor</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.firstLine() → integer</code>
+		   <p>Get the number of first line in the editor</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.lastLine() → integer</code>
+		   <p>Get the number of last line in the editor</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.getSelection(?lineSep: string) → string</code>
+		   <p>Get the currently selected code. Optionally pass a line separator to put between the lines in the output. When multiple selections are present, they are concatenated with instances of lineSep in between.</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.replaceSelection(replacement: string, ?select: string)</code>
+		   <p>Replace the selection(s) with the given string. By default, the new selection ends up after the inserted text. The optional select argument can be used to change this—passing "around" will cause the new text to be selected, passing "start" will collapse the selection to the start of the inserted text.</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.getCursor(?start: string) → {line, ch}</code>
+		   <p>Retrieve one end of the primary selection. start is an optional string indicating which end of the selection to return. It may be "from", "to", "head" (the side of the selection that moves when you press shift+arrow), or "anchor" (the fixed side of the selection). Omitting the argument is the same as passing "head". A {line, ch} object will be returned.</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.somethingSelected() → boolean</code>
+		   <p>Return true if any text is selected</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.setCursor(pos: {line, ch}|number, ?ch: number, ?options: object)</code>
+		   <p>Set the cursor position. You can either pass a single {line, ch} object, or the line and the character as two separate parameters. Will replace all selections with a single, empty selection at the given position</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.hasFocus() → boolean</code>
+		   <p>Tells you whether the editor currently has focus</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.findWordAt(pos: {line, ch}) → {anchor: {line, ch}, head: {line, ch}}</code>
+		   <p>Returns the start and end of the 'word' (the stretch of letters, whitespace, or punctuation) at the given position</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.getOption(option: string) → any</code>
+		   <p>Retrieves the current value of the given option for this editor instance</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.setOption(option: string, value: any)</code>
+		   <p>Change the configuration of the editor. option should the name of an option, and value should be a valid value for that option</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.getDoc() → Doc</code>
+		   <p>Retrieve the currently active document from an editor</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.getEditor() → CodeMirror</code>
+		   <p>Retrieve the editor associated with a document. May return null</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.undo()</code>
+		   <p>Undo one edit (if any undo events are stored)</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.redo()</code>
+		   <p>Redo one undone edit</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.setSize(width: number|string, height: number|string)</code>
+		   <p>Programmatically set the size of the editor (overriding the applicable CSS rules). width and height can be either numbers (interpreted as pixels) or CSS units ("100%", for example). You can pass null for either of them to indicate that that dimension should not be changed</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.scrollTo(x: number, y: number)</code>
+		   <p>Scroll the editor to a given (pixel) position. Both arguments may be left as null or undefined to have no effect</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.refresh()</code>
+		   <p>If your code does something to change the size of the editor element (window resizes are already listened for), or unhides it, you should probably follow up by calling this method to ensure CodeMirror is still looking as intended</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.getTokenAt(pos: {line, ch}, ?precise: boolean) → object</code>
+		   <p>Retrieves information about the token the current mode found before the given position (a {line, ch} object). The returned object has the following properties:</p>
+		   <p>start -> The character (on the given line) at which the token starts</p>
+		   <p>end -> The character at which the token ends</p>
+		   <p>string->The token's string</p>
+		   <p>type -> The token type the mode assigned to the token, such as "keyword" or "comment" (may also be null) </p>
+		   <p>state -> The mode's state at the end of this token</p>
+	   </div>
+			   
+	   <div class="doc">
+		   <code>yashe.getDefinedPrefixes() → object: </code>
+		   <p>Fetch defined prefixes</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.addPrefixes(prefixes: object)</code>
+		   <p>Add prefixes to the query. The prefixes are defined as <code>{"rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"}</code></p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.removePrefixes(prefixes: object)</code>
+		   <p>Remove prefixes from query. The prefixes are defined as <code>{"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"}</code></p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.setSize(width: Number|string, height: Number|string)</code>
+		   <p>Set size. Use null value to leave width or height unchanged. To resize the editor to fit its content, see http://codemirror.net/demo/resize.html</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.enableCompleter(completerName: String)</code>
+		   <p>Enable an autocompleter with this name. Only makes sense if you've programatically disabled this completer before, as a plugin is automatically enabled when registering it (see <a href="#registerAutocompleter">this function</a>)</p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.disableCompleter(completerName: String)</code>
+		   <p>Disable an autocompleter with this name. </p>
+	   </div>
+	   <div class="doc">
+		   <code>yashe.storeBulkCompletions(type: String)</code>
+		   <p>Store bulk completions in memory as trie, and in localstorage as well (if enabled). The argument should be a key from the <a href="#autocompletions">autocompletion</a> settings</p>
+	   </div>
+		  <div class="doc">
+		   <code>yashe.collapsePrefixes(collapse: boolean)</code>
+		   <p>Collapsing prefixes if there are any. Use false to expand them.</p>
+	   </div>
+
+		<h2 id="statics">Statics</h2>
+     	Static functions YASHE
+   		<div class="doc" id="registerAutocompleter">
+   			<code>YASHE.registerAutocompleter(name: String, autocompleter: function)</code>
+   			<p>Register an <a href="#autocompletions">autocompleter</a> in YASHE. This automatically enables the completer as well</p>
+ 		</div>
+   
+		<div class="doc">
+			<code>YASHE.getCompleteToken(doc: yashe, token: Object, cursor: Object) → token: Object</code>
+			<p>When typing a shape, this shape is sometimes syntactically invalid, causing
+			the current tokens to be incorrect This causes problem for autocompletion.
+			http://bla might result in two tokens: http:// and bla. We'll want to combine
+			these</p>
+		</div>
+		
+
+     	
+	
+		<h3 id="autocompletions">Writing an Autocompletion Plugin</h3>
+		To register an autocompletion, one needs to execute the <code>YASHE.registerAutocompleter</code> <a href="#registerAutocompleter">function</a>.
+		Below, we describe the autocompletion function in more detail, and the object it should return.
+
+		<div class="doc" >
+			<code>constructor(doc: yashe) → configurationObject: Object</code>
+			<p>Autocompleter constructor, which should return the object described below</p>
+		</div>
+		<div class="doc" style="margin-left: 30px;">
+			<code>get: function|array</code> <span class="label label-primary">Required</span>
+			<p>Get the autocompletions. Either a function which returns an
+			array, or an actual array. The array should be in the form ["&lt;completionsString1&gt;", "&lt;completionsString2&gt;"].</p>
+			<p>If used as a function, the parameters it receives are</p>
+			<ol>
+				<li><code>token: object</code> If 'bulk' loading is disabled, use this token to return the appropriate list of suggestions for</li>
+				<li><code>callback: function</code> If 'async' is enabled, return the suggestions by passing it on to this callback</li>
+			</ol>
+		</div>
+		<div style="margin-left: 30px" class="doc" >
+			<code>isValidCompletionPosition: function() → boolean</code> <span class="label label-primary">Required</span>
+			<p>Check whether the cursor is in a proper position for this autocompletion.</p>
+		</div>
+		<div style="margin-left: 30px"  class="doc" >
+			<code>preProcessToken: function(token: object|string)  → token: object</code> <span class="label label-default">Optional</span>
+			<p>Preprocesses the codemirror token before matching it with the autocompletions list.
+			Use this for e.g. autocompleting prefixed resources when your autocompletion list contains only full-length URIs
+			E.g., foaf:name -&gt; http://xmlns.com/foaf/0.1/name</p>
+		</div>
+		<div style="margin-left: 30px" class="doc" >
+			<code>postProcessToken: function(token: object|string, suggestion: string) → string</code> <span class="label label-default">Optional</span>
+			<p>Postprocesses the autocompletion suggestion.
+			Use this for e.g. returning a prefixed URI based on a full-length URI suggestion
+			E.g., http://xmlns.com/foaf/0.1/name -&gt; foaf:name</p>
+		</div>
+		<div style="margin-left: 30px" class="doc" >
+			<code>async: boolean </code> <span class="label label-primary">Required</span>
+			<p>Specifies that the get function is asynchronous</p>
+		</div>
+		<div style="margin-left: 30px" class="doc" >
+			<code>bulk: boolean</code> <span class="label label-primary">Required</span>
+			<p>Use bulk loading of completions: all completions are retrieved onLoad
+			using the get() function. Alternatively, disable bulk loading, to
+			call the get() function whenever a token needs autocompletion (in
+			which case the completion token is passed on to the get()
+			function). whenever you have an autocompletion list that is static, and that easily
+			fits in memory, we advice you to enable bulk for performance
+			reasons (especially because the autocompletions are stored in a trie)</p>
+		</div>
+		<div style="margin-left: 30px" class="doc">
+			<code>autoShow: boolean</code> <span class="label label-default">Optional</span>
+			<p>Auto-show the autocompletion dialog. Disabling this requires the
+			user to press [ctrl|cmd]-space to summon the dialog. Note: this
+			only works when completions are not fetched asynchronously</p>
+		</div>
+		<div style="margin-left: 30px" class="doc" >
+			<code>persistent: string|function </code> <span class="label label-default">Optional</span>
+			<p>Automatically store autocompletions in localstorage. This is
+			particularly useful when the get() function is an expensive ajax
+			call. Autocompletions are stored for a period of a month. Set
+			this property to null to disable persistency. Otherwise, set a string value (or a function
+			returning a string val), returning the key in which to store the
+			data.
+			Note: this feature only works when completions are
+			loaded in memory (i.e. <code>bulk</code>: true)</p>
+		</div>
+		<div style="margin-left: 30px" class="doc">
+			<code>callbacks: object</code> <span class="label label-default">Optional</span>
+			<p>A set of callbacks. Most, taken from the CodeMirror <a href="http://codemirror.net/doc/manual.html#addon_show-hint" target="_blank">showhint plugin</a></p>
+		</div>
+		<div  class="doc" style="margin-left: 60px;">
+			<code>validPosition: function</code> <span class="label label-default">Optional</span>
+			<p>Fires when a codemirror change occurs in a position where we
+			can show this particular type of autocompletion</p>
+		</div>
+		<div class="doc" style="margin-left: 60px;">
+			<code>invalidPosition: function</code> <span class="label label-default">Optional</span>
+			<p>Fires when a codemirror change occurs in a position where we
+			can <i>not</i> show this particular type of autocompletion</p>
+		</div>
+		<div  class="doc" style="margin-left: 60px;">
+			<code>showHint: function </code> <span class="label label-default">Optional</span>
+			<p>See <a href="http://codemirror.net/doc/manual.html#addon_show-hint" target="_blank">CodeMirror manual</a></p>
+		</div>
+		<div class="doc" style="margin-left: 60px;">
+			<code>select: function</code> <span class="label label-default">Optional</span>
+			<p>See <a href="http://codemirror.net/doc/manual.html#addon_show-hint" target="_blank">CodeMirror manual</a></p>
+		</div>
+		<div class="doc" style="margin-left: 60px;">
+			<code>pick: function</code> <span class="label label-default">Optional</span>
+			<p>See <a href="http://codemirror.net/doc/manual.html#addon_show-hint" target="_blank">CodeMirror manual</a></p>
+		</div>
+		<div  class="doc" style="margin-left: 60px;">
+			<code>close: function</code> <span class="label label-default">Optional</span>
+			<p>See <a href="http://codemirror.net/doc/manual.html#addon_show-hint" target="_blank">CodeMirror manual</a></p>
+		</div>
+
+
+
+    <h3 id="autocompletionsConfig">Configuring Autocompletion Plugins</h3>
+    To modify how autocompletion plugins work, you can simply overwrite the settings and/or function that are explained in the <a href="#autocompletions">section above</a>.
+    To e.g. modify the <code>autoShow</code> setting for the prefix autocompleter, set `YASHE.Autocompleters.prefixes.autoShow = false` before you initialize YASHE.
+    Some plugins may come with extra configuration options such as the prefix autocompleter, that allows you to change the url from where the prefix json is fetched:
+    <div class="doc" style="">
+			<code>YASHE.Autocompleters.prefixes.fetchFrom: string (default: //prefix.cc/popular/all.file.json)</code>
+			<p>Where to fetch the prefix json from. Change this when you'd like to host the json yourself. This might be useful when you run YASHE on an `https` site, considering that prefix.cc currently does not support `https`</p>
+		</div>
+
+</div><!-- col -->
+<div class="col-md-3" id="sidebarmenu">
+	<div class="bs-docs-sidebar hidden-xs hidden-sm" data-spy="affix" data-offset-top="60">
+		<ul class="nav bs-docs-sidenav">
+			<li><a href="#gettingStarted">Getting Started</a>
+				<ul class="nav">
+					<li><a href="#gists">Examples</a>
+				</ul>
+			</li>			
+			<li><a href="#config">Configuration</a></li>
+			<li><a href="#events">Events</a>
+				<ul class="nav">
+					<li><a href="#event-handlers">Event Handlers</a></li>
+					<li><a href="#fire-events">Fire Events</a></li>
+				</ul>
+			</li>
+			<li><a href="#api">API</a></li>
+			<li><a href="#statics">Statics</a></li>
+			<li><a href="#autocompletions">Writing an Autocompletion Plugin</a></li>
+		</ul>
+	</div>
+</div><!-- col -->
+</div><!-- row -->
+</div><!-- container -->
+
+
+
+<script src="doc.min.js"></script>
+</body>
+</html>
