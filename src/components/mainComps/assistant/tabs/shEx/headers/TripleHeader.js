@@ -47,7 +47,7 @@ function TripleHeader (props) {
     }
 
  const MenuItem = ({item}) => (
-        <div>
+        <div className='hintItem'>
             <span>{item.id}</span><br/>
             <span>{item.label}</span><br/>
             <span><b>{item.descr}</b></span>
@@ -56,7 +56,7 @@ function TripleHeader (props) {
 
 
 const handleChange = function(e){
-        console.log(e.target.value)
+       
         QUERY.search = e.target.value;
    $.get({
         url: API_ENDPOINT + 'api.php?' + $.param(QUERY),
@@ -82,11 +82,14 @@ const handleChange = function(e){
                     
            <div className="autocomplete">
                 <input id="myInput" type="text" name="myCountry" placeholder="Country" onChange={handleChange}/>
+                <div className='wikiHints'>
                 {
+                        
                         Object.keys(options).map(o=>{
-                                return <MenuItem item={options[o]}/>
+                                return <MenuItem key={options[o].id} item={options[o]}/>
                         })
                 }
+                 </div>
            </div>
 
 

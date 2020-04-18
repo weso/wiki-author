@@ -37,4 +37,24 @@
 
 
 
+.wikiHints{
+    position: absolute;
+    display: grid;
+    max-width: 205px;
+    height: 250px;
+    z-index: 1200;
+    background-color: white;
+    overflow: auto;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+}
 
+.hintItem{
+    font-size: 15px;
+    padding: 10px;
+    background-color: white;
+}
+
+.hintItem:hover{
+    background-color: rgb(233, 231, 231);
+}
