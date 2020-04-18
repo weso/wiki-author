@@ -158,41 +158,6 @@ label{
     border-top: 1px solid #acaaaa;
 }
 
-.globalFacet{
-    border-top: 1px solid #acaaaa;
-    padding: 8px; 
-}
-
-.facetCont{
-    display: grid;
-}
-
-.facetInputs{
-    display: grid;
-    grid-template-columns: 55% 33% 12%;
-    padding-top: 4px;
-}
-
-.deleteFacetBtn{
-    border-radius: 10px;
-    outline: none;
-    border: none;
-
-}
-
-.deleteFacetBtn:focus{
-    outline: none;
-}
-
-
-.deleteFacetBtn:hover{
-    transform: scale(1.1);
-}
-
-.deleteFacetBtn:active {
-    transform: translateY(4px);
-}
-
 
 .cardinality{
     padding: 8px;
@@ -276,20 +241,6 @@ label{
     margin-right: 200px;
 }
 
-
-
-
-.addFacet{ 
-    background:white;
-    color: #222;
-    border-radius: 10px;
-/*    background:#f7bebe;*/
-    margin-top:6px;
-}
-
-.addFacet:focus{
-    outline: none;
-}
 
 
 .shape{
