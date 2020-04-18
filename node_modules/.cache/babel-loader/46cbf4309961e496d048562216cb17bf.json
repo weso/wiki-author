@@ -1,0 +1,1 @@
+{"ast":null,"code":"/**\n * Prevent the main input from blurring when a menu item or the clear button is\n * clicked. (#226 & #310)\n */\nexport default function preventInputBlur(e) {\n  e.preventDefault();\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -34,3 +34,19 @@
 .deleteTripleBtn:active {
     transform: translateY(4px);
 }
+
+
+
+.MuiInputBase-root{
+    border-radius: 4px;
+    color:#222;
+    padding-left: 10px;
+    border: 1px solid #acaaaa !important;
+    height: 40px;
+    font-size: 15px !important;
+    background-color: white;
+}
+
+.autoInput{
+    margin-bottom: 10px;
+}

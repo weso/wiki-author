@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function getDisplayName(Component) {\n  return Component.displayName || Component.name || 'Component';\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export { default } from './Fade'; // eslint-disable-next-line camelcase\n\nexport { default as unstable_StrictModeFade } from './StrictModeFade';","map":null,"metadata":{},"sourceType":"module"}

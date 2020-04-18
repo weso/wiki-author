@@ -1,0 +1,1 @@
+{"ast":null,"code":"export { default } from './Collapse'; // eslint-disable-next-line camelcase\n\nexport { default as unstable_StrictModeCollapse } from './StrictModeCollapse';","map":null,"metadata":{},"sourceType":"module"}

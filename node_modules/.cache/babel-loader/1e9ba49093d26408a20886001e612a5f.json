@@ -1,0 +1,1 @@
+{"ast":null,"code":"/**\n * Truncates the result set based on `maxResults` and returns the new set.\n */\nfunction getTruncatedOptions(options, maxResults) {\n  if (!maxResults || maxResults >= options.length) {\n    return options;\n  }\n\n  return options.slice(0, maxResults);\n}\n\nexport default getTruncatedOptions;","map":null,"metadata":{},"sourceType":"module"}

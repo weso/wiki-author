@@ -3,6 +3,7 @@ import {AppContext} from '../../../../../../App';
 import {ShapeContext} from '../ShapeComponent';
 import yasheUtils from '../../../../../../utils/yasheUtils';
 import Properties from '../../../../../../conf/properties';
+import {Typeahead} from 'react-bootstrap-typeahead';
 import '../../../../../../css/shexComponents/headers/TripleHeader.css';
 
 
@@ -15,6 +16,7 @@ function TripleHeader (props) {
     const shapeContext = useContext(ShapeContext);
     const styles = Properties.getInstance().getTripleStyle();
     const disabled = shapeContext.disabled;
+    const top100Films =[{id:'1',label:'Human',description:'asdas'},{id:'2',label:'Human',description:'asdas'}]
 
     const { triple,
             deleteTriple,
@@ -34,17 +36,34 @@ function TripleHeader (props) {
         setName(name);
     }
 
-
+ const MenuItem = ({item}) => (
+        <div>
+            <span>{item.id}</span><br/>
+            <span>{item.label}</span><br/>
+            <span><b>{item.descr}</b></span>
+        </div>
+    );
    
     return (
-        <div className="xs-tripleHeader" style={styles.header}>            
-            <input  type="text" 
-                    className="name"
-                    value={name}
-                    onChange={handleNameChange}
-                    placeholder="eg: name"
-                    disabled={disabled}
-                    title="Triple Constraint Name"/>
+        <div className="xs-tripleHeader" style={styles.header}>
+                    
+           <Typeahead
+                id="InputSchemaEntityByText"
+                filterBy={['id','label','descr']}
+                labelKey="label"
+                options={top100Films}
+                maxResults = {10}
+                minLength={2}
+               
+                placeholder="E.. or label"
+                renderMenuItemChildren={(option, props) => (
+                    <MenuItem key={option.id} item={option}/>
+                )}
+                useCache={false}
+                onChange={(selected) => {
+                   
+                }}
+            />
 
 
             <button className="tripleBtns buildConstraint buildBtn buildTripleBtn mdc-icon-button material-icons"

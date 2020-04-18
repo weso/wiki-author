@@ -8,6 +8,7 @@
     "gh-pages": "^2.1.1",
     "jquery": "^3.4.1",
     "react": "^16.11.0",
+    "react-bootstrap-typeahead": "^4.2.2",
     "react-color": "^2.18.0",
     "react-cookie": "^4.0.3",
     "react-dom": "^16.11.0",

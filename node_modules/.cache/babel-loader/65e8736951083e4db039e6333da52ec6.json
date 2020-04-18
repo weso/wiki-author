@@ -1,0 +1,1 @@
+{"ast":null,"code":"export function isSizeLarge(size) {\n  return size === 'large' || size === 'lg';\n}\nexport function isSizeSmall(size) {\n  return size === 'small' || size === 'sm';\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { DEFAULT_LABELKEY } from '../constants';\nexport default function getStringLabelKey(labelKey) {\n  return typeof labelKey === 'string' ? labelKey : DEFAULT_LABELKEY;\n}","map":null,"metadata":{},"sourceType":"module"}
