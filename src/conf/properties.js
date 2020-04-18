@@ -3,7 +3,6 @@ import { useCookies } from 'react-cookie';
 import {SHAPE_COLORS,
         TRIPLE_COLORS,
         CONSTRAINT_COLORS,
-        FACET_COLORS,
         SHAPEREF_COLORS,
         CARDINALITY_COLORS,
         PREFIX_COLORS} from './colors';
@@ -53,10 +52,6 @@ const Properties = (()=> {
                         color:TRIPLE_COLORS.constraintFill,
                         background:TRIPLE_COLORS.constraint
                 },
-                facet:{
-                        color:TRIPLE_COLORS.facetFill,
-                        background:TRIPLE_COLORS.facet
-                },
                 shapeRef:{
                         color:TRIPLE_COLORS.shapeRefFill,
                         background:TRIPLE_COLORS.shapeRef
@@ -85,21 +80,6 @@ const Properties = (()=> {
                 delete:{
                         color:CONSTRAINT_COLORS.deleteFill,
                         background:CONSTRAINT_COLORS.delete
-                },
-            };  
-        }
-
-        this.getFacetStyle = function(){
-            return {
-                label:{color:FACET_COLORS.label}, 
-                body:{background:FACET_COLORS.body},
-                add:{
-                        color:FACET_COLORS.addFill,
-                        background:FACET_COLORS.add
-                },
-                delete:{
-                        color:FACET_COLORS.deleteFill,
-                        background:FACET_COLORS.delete
                 },
             };  
         }
@@ -150,7 +130,6 @@ const Properties = (()=> {
             this.loadCookie('shapeColors',SHAPE_COLORS);
             this.loadCookie('tripleColors',TRIPLE_COLORS);
             this.loadCookie('constraintColors',CONSTRAINT_COLORS);
-            this.loadCookie('facetColors',FACET_COLORS);
             this.loadCookie('shapeRefColors',SHAPEREF_COLORS);
             this.loadCookie('cardinalityColors',CARDINALITY_COLORS);
 
@@ -182,7 +161,6 @@ const Properties = (()=> {
             removeCookie('shapeColors');
             removeCookie('tripleColors');
             removeCookie('constraintColors');
-            removeCookie('facetColors');
             removeCookie('shapeRefColors');
             removeCookie('cardinalityColors');
             removeCookie('cardinalityColors');
@@ -195,7 +173,6 @@ const Properties = (()=> {
             this.defaultShape = Object.assign({}, SHAPE_COLORS);
             this.defaultTriple = Object.assign({}, TRIPLE_COLORS);
             this.defaultConstraint = Object.assign({}, CONSTRAINT_COLORS);
-            this.defaultFacet = Object.assign({}, FACET_COLORS);
             this.defaultShapeRef = Object.assign({}, SHAPEREF_COLORS);
             this.defaultCardinality = Object.assign({}, CARDINALITY_COLORS);
             //Config
@@ -206,7 +183,6 @@ const Properties = (()=> {
             this.load(this.defaultShape,SHAPE_COLORS);
             this.load(this.defaultTriple,TRIPLE_COLORS);
             this.load(this.defaultConstraint,CONSTRAINT_COLORS);
-            this.load(this.defaultFacet,FACET_COLORS);
             this.load(this.defaultShapeRef,SHAPEREF_COLORS);
             this.load(this.defaultCardinality,CARDINALITY_COLORS);
             this.removeCookies();

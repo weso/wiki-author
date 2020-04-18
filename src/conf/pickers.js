@@ -17,8 +17,6 @@ export const TRIPLE_PICKERS = [
         {tag:'Custom Fill',element:'customFill'},
         {tag:'Constraint',element:'constraint'},
         {tag:'Constraint Fill',element:'constraintFill'},
-        {tag:'Facet',element:'facet'},
-        {tag:'Facet Fill',element:'facetFill'},
         {tag:'Shape Ref',element:'shapeRef'},
         {tag:'Shape Ref Fill',element:'shapeRefFill'},
         {tag:'Cardinality',element:'cardinality'},
@@ -35,12 +33,6 @@ export const CONSTRAINT_PICKERS = [
         {tag:'Add Value Fill',element:'addFill'},
         {tag:'Delete Value',element:'delete'}];
 
-export const FACET_PICKERS = [
-        {tag:'Labels',element:'label'},
-        {tag:'Facet Body',element:'body'},
-        {tag:'Add Facet',element:'add'},
-        {tag:'Add Facet Fill',element:'addFill'},
-        {tag:'Delete Facet',element:'delete'}];
 
 export const SHAPEREF_PICKERS = [
         {tag:'Labels',element:'label'},

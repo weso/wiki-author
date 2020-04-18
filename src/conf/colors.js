@@ -16,12 +16,8 @@ export const SHAPE_COLORS = {
 export const TRIPLE_COLORS = {
         label:'#222',
         header:'#EFDECD',
-        custom:'#3d3d3d',
-        customFill:'#f8a252',
         constraint:'#3d3d3d',
         constraintFill:'#b1e086',
-        facet:'#3d3d3d',
-        facetFill:'#f5817f',
         shapeRef:'#3d3d3d',
         shapeRefFill:'#f8fa95',
         cardinality:'#3d3d3d',
@@ -41,14 +37,7 @@ export const CONSTRAINT_COLORS = {
         deleteFill:'#ffff',
 };
 
-export const FACET_COLORS = {
-        label:'#222',
-        body:'#f5d6d6',
-        add:'#ffff',
-        addFill:'#222',
-        delete:'#fd9090',
-        deleteFill:'#ffff',
-};
+
 
 export const SHAPEREF_COLORS = {
         label:'#222',

@@ -11,11 +11,6 @@ function TripleView (props) {
                     placeholder="eg: name"
                     title="Triple Constraint Name"/>
 
-            <button className="tripleBtns buildTriple buildBtn buildTripleBtn mdc-icon-button material-icons"
-                    style={styles.custom}
-                    title="Customize Triple">
-                    build
-            </button>
 
             <button className="tripleBtns buildConstraint buildBtn buildTripleBtn mdc-icon-button material-icons"
                     style={styles.constraint}
@@ -23,11 +18,6 @@ function TripleView (props) {
                     build
             </button>
 
-             <button className="tripleBtns buildFacet buildBtn buildTripleBtn mdc-icon-button material-icons"
-                    style={styles.facet}
-                    title="Customize Facets">
-                    build
-            </button>
 
             <button className="tripleBtns buildInlineRef buildBtn buildTripleBtn mdc-icon-button material-icons"  
                     style={styles.shapeRef}
