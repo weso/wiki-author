@@ -40,7 +40,7 @@ function ShapeHeader (props) {
             <label style={styles.label}>Shape</label>
             <Textbox 
                     attributesInput={{ 
-                        id: 'Name',
+                        id: shape.id,
                         name: 'Name',
                         type: 'text',
                         placeholder: 'eg: User',

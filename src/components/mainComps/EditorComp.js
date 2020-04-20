@@ -185,9 +185,11 @@ function EditorComp() {
     }
 
     const replaceShapes = async (newShapes)=>{
+        loading();
         let shapes = await newShapes;
         console.log(shapes)
         context.replaceShapes(shapes);
+        loaded();
         return shapes;
     }
 
@@ -200,9 +202,9 @@ function EditorComp() {
     const updateAssist = function(){
         hideConvert();
         loading();
-        setTimeout(function() {
+        setTimeout(async function() {
             isComplex=false;  
-            oldShapes = replaceShapes(getNewShapes());                
+            oldShapes = replaceShapes(await getNewShapes());                
             loaded();
         },500)
     }

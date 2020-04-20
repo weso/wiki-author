@@ -113,19 +113,21 @@ async function getShapes(defShapes){
     refs = [];
     let shapes = [];
     let yashe = Editor.getInstance().getYashe();
-    await Promise.all(defShapes.map(async (shape) => {
-        let id  = shapes.length;
+    await Promise.all(defShapes.map(async (shape,index) => {
+        //let id= await index;
         let shapeDef = shape[0].string;
         let shapeType = getType(shapeDef);
         let qualifier = getQualifier(shape[1]);
-        let triples = await getTriples(id,shape);
+        let triples = await getTriples(index,shape);
 
-        shapes.push(new Shape(id,shapeType,triples,qualifier));
+        shapes.push(new Shape(index,shapeType,triples,qualifier));
+
         
     }))
 
     return shapes;
 }
+
 
 /**
 * Get the type of the Shape or Triple
@@ -133,7 +135,6 @@ async function getShapes(defShapes){
 *
  */
 function getType(def) {
-    console.log(def)
     let value;
     let yashe = Editor.getInstance().getYashe();
     if(def.startsWith('<')){
@@ -164,8 +165,6 @@ async function getTypeByID(def) {
             url: API_ENDPOINT + 'api.php?' + $.param(QUERY_ID),
             dataType: 'jsonp',
     })
-
-    console.log(result)
     return result;
 }
 
@@ -230,7 +229,6 @@ async function getTriple(id,singleTriple,shapeId) {
         let token = singleTriple[i];
         if(token.type == 'string-2' || token.type == 'variable-3'){
             let result = await getTypeByID(token.string);
-            console.log(result.entities[token.string.split(':')[1]].labels.en.value)
             let yashe = Editor.getInstance().getYashe();
             let prefixValue = getPrefixValue(yashe.getDefinedPrefixes(),token.string.split(':')[0])
             let prefix = new Prefix(token.string.split(':')[0],prefixValue);
