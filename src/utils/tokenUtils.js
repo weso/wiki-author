@@ -120,8 +120,6 @@ async function getShapes(defShapes){
         let triples = await getTriples(index,shape);
 
         shapes[index] = new Shape(index,shapeType,triples,qualifier);
-
-        
     }))
 
     return shapes;
@@ -219,6 +217,7 @@ async function getTriples(shapeId,shape) {
 */
 async function getTriple(id,singleTriple,shapeId) {   
     let type;
+    let label='';
     let constraint;
     let valueSet = [];
     let facets = [];
@@ -228,10 +227,8 @@ async function getTriple(id,singleTriple,shapeId) {
         let token = singleTriple[i];
         if(token.type == 'string-2' || token.type == 'variable-3'){
             let result = await getTypeByID(token.string);
-            let yashe = Editor.getInstance().getYashe();
-            let prefixValue = getPrefixValue(yashe.getDefinedPrefixes(),token.string.split(':')[0])
-            let prefix = new Prefix(token.string.split(':')[0],prefixValue);
-            type =  new PrefixedIri(prefix,result.entities[token.string.split(':')[1]].labels.en.value);
+            label = result.entities[token.string.split(':')[1]].labels.en.value;
+            type = getType(token.string);
         }
         if(token.type == 'constraint' || token.type == 'constraintKeyword' ){
             constraint = getConstraint(token.string);
@@ -295,7 +292,7 @@ async function getTriple(id,singleTriple,shapeId) {
   
     }
     if(valueSet.length>0)constraint=new ValueSet(valueSet);
-    return new Triple(id,type,constraint,shapeRef,facets,cardinality);
+    return new Triple(id,type,label,constraint,shapeRef,facets,cardinality);
 }
 
 /**

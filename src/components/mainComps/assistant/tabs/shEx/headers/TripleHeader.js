@@ -20,13 +20,6 @@ var QUERY = {
   format: 'json',
 }
 
-var QUERY_ID = {
-        action:'wbgetentities',
-        ids:'P31',
-        format: 'json',
-}
-
-
 function TripleHeader (props) {
         
 
@@ -45,7 +38,7 @@ function TripleHeader (props) {
             } = props;
 
 
-    const [name,setName] = useState([triple.type.value]);
+    const [name,setName] = useState([{id:triple.type.value,label:triple.label}]);
     const [options,setOptions] = useState([]);
     const [isLoading,setLoading] = useState(false);
 
