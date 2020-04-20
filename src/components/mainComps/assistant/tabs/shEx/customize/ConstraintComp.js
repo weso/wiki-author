@@ -3,6 +3,7 @@ import { Collapse } from 'reactstrap';
 import {AppContext} from '../../../../../../App';
 import {AsyncTypeahead} from 'react-bootstrap-typeahead';
 import Properties from '../../../../../../conf/properties';
+import Prefix from '../../../../../../entities/shexEntities/shexUtils/prefix';
 import $ from 'jquery';
 
 const primitives = ['String','Integer','Date','Boolean'];
@@ -34,6 +35,8 @@ function ConstraintComp (props) {
 
     const handleNameChange = function(selected){
         if(selected.length>0){
+            triple.setConstraint('prefixedIri');
+            triple.constraint.prefix = new Prefix('wd','http://www.wikidata.org/entity/')
             triple.constraint.setValue(selected[0].id);
             context.emit();
         }
