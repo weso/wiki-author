@@ -3,7 +3,10 @@ import tokenUtils from './tokenUtils';
 import Prefix from '../entities/shexEntities/shexUtils/prefix';
 
 const DEFAULT_SHAPE = 'PREFIX wd: <http://www.wikidata.org/entity/>\n'+
-'PREFIX wdt: <http://www.wikidata.org/prop/direct/>\n\n';
+'PREFIX wdt: <http://www.wikidata.org/prop/direct/>\n\n'+
+'<human>{\n'+
+'wdt:P31 wd:Q5\n'+
+'}';
   
 const VALUESET_SHAPE = 'PREFIX :       <http://example.org/>\n'+
 'PREFIX schema: <http://schema.org/>\n'+
@@ -16,10 +19,12 @@ const VALUESET_SHAPE = 'PREFIX :       <http://example.org/>\n'+
 
   let prefixCount = 0;
   
-  function replaceShapes(){
+  async function replaceShapes(){
     let tokens = tokenUtils.getTokens();
     let defShapes = tokenUtils.getDefinedShapes(tokens);
-    let newShapes = tokenUtils.getShapes(defShapes);
+    let newShapes = await tokenUtils.getShapes(defShapes);
+
+    console.log(newShapes)
  
     tokenUtils.updateShapeRefs(newShapes);
 

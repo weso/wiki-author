@@ -184,9 +184,11 @@ function EditorComp() {
         return yasheUtils.updatePrefixes();
     }
 
-    const replaceShapes = (newShapes)=>{
-        context.replaceShapes(newShapes);
-        return newShapes;
+    const replaceShapes = async (newShapes)=>{
+        let shapes = await newShapes;
+        console.log(shapes)
+        context.replaceShapes(shapes);
+        return shapes;
     }
 
     const updatePrefixes = (newPrefixes)=>{

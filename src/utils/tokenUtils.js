@@ -32,7 +32,7 @@ import Prefix from '../entities/shexEntities/shexUtils/prefix';
 import ShapeRef from '../entities/shexEntities/shexUtils/shapeRef';
 import ValueSetValue from '../entities/shexEntities/shexUtils/valueSetValue';
 
-
+import $ from 'jquery';
 
 //HAY QUE METER TODOS (Update... igual no hace falta...)
 const PRIMITIVES = ['string','integer','date','boolean'];
@@ -109,19 +109,22 @@ function getDefinedShapes(tokens){
 * @param {Array} Shapes (Array of Token's arrays)
 *
  */
-function getShapes(defShapes){
+async function getShapes(defShapes){
     refs = [];
     let shapes = [];
     let yashe = Editor.getInstance().getYashe();
-    defShapes.forEach(shape => {
+    let asx = defShapes.map(async (shape) => {
         let id  = shapes.length;
         let shapeDef = shape[0].string;
         let shapeType = getType(shapeDef);
         let qualifier = getQualifier(shape[1]);
-        let triples = getTriples(id,shape);
+        let triples = await getTriples(id,shape);
 
-        shapes.push(new Shape(id,shapeType,triples,qualifier));
+        return shapes.push(new Shape(id,shapeType,triples,qualifier));
+
     })
+
+    console.log(shapes)
     return shapes;
 }
 
@@ -148,6 +151,24 @@ function getType(def) {
     }
 }
 
+async function getTypeByID(def) {
+    let language = (navigator.language || navigator.userLanguage).split("-")[0];
+    var API_ENDPOINT = 'https://www.wikidata.org/w/';
+    var QUERY_ID = {
+            action:'wbgetentities',
+            ids:def.split(':')[1],
+            format: 'json', 
+    }
+
+    let result = await $.get({
+            url: API_ENDPOINT + 'api.php?' + $.param(QUERY_ID),
+            dataType: 'jsonp',
+    })
+
+    console.log(result)
+    return result;
+}
+
 
 /**
 *   Get the Qualifier
@@ -172,7 +193,7 @@ function getQualifier(qualifier) {
 *   @param {Array} Shape (Tokens)
 *
 * */
-function getTriples(shapeId,shape) {
+async function getTriples(shapeId,shape) {
         let triples = [];
         let singleTriple = [];
         let yashe = Editor.getInstance().getYashe();
@@ -182,7 +203,8 @@ function getTriples(shapeId,shape) {
             if((shape[i].type == 'punc' &&  shape[i].string==';')// finish of the triple ';' 
                 || i==shape.length-1){  // finish of the last triple without ';'
                 if(singleTriple.length!=1){ //This line is neccesary when last triple of the shape ends with ';'
-                    triples.push(getTriple(triples.length,singleTriple,shapeId));
+                    let t= await getTriple(triples.length,singleTriple,shapeId);
+                    triples.push(t);
                     singleTriple = [];
                 }
             }
@@ -197,7 +219,7 @@ function getTriples(shapeId,shape) {
 *    @param {Array} LineTokens
 *    @param {Integer} ShapeId
 */
-function getTriple(id,singleTriple,shapeId) {   
+async function getTriple(id,singleTriple,shapeId) {   
     let type;
     let constraint;
     let valueSet = [];
@@ -207,7 +229,9 @@ function getTriple(id,singleTriple,shapeId) {
     for(let i=0;i<singleTriple.length;i++){
         let token = singleTriple[i];
         if(token.type == 'string-2' || token.type == 'variable-3'){
-            type = getType(token.string);
+            let result = await getTypeByID(token.string);
+            console.log(result.entities[token.string.split(':')[1]].labels.en.value)
+            type = getType(result.entities[token.string.split(':')[1]].labels.en.value);
         }
         if(token.type == 'constraint' || token.type == 'constraintKeyword' ){
             constraint = getConstraint(token.string);

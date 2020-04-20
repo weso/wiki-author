@@ -26,8 +26,11 @@ function ConstraintComp (props) {
     const {triple} = props;
     const styles = Properties.getInstance().getConstraintStyle();
    
-
-    let init = triple.constraint.value=='none' ?  '' : triple.constraint.value;
+    let init = '';
+    if(triple.constraint){
+        init = triple.constraint.value=='none' ?  '' : triple.constraint.value;
+    }
+    
     const [name,setName] = useState([init]);
     const [options,setOptions] = useState([]);
     const [isLoading,setLoading] = useState(false);

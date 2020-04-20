@@ -19,7 +19,6 @@ function TripleView (props) {
             </button>
 
 
-
            
             <button className="tripleBtns buildCardinality buildBtn buildTripleBtn mdc-icon-button material-icons" 
                     style={styles.cardinality}
