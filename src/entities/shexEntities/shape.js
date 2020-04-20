@@ -1,12 +1,11 @@
 import TypesFactory from './types/typesFactory';
-
-import PrefixedIri from './types/concreteTypes/prefixedIri';
+import IriRef from './types/concreteTypes/iriRef';
 import BlankKind from './types/concreteTypes/kinds/blankKind';
 import Prefix from './shexUtils/prefix';
 
 class Shape {
 
-  constructor(id,type=new PrefixedIri(new Prefix('','http://example.org/')),triples = [],qualifier=new BlankKind()) {
+  constructor(id,type=new IriRef(),triples = [],qualifier=new BlankKind()) {
       this.id = id;
       this.type = type;
       this.triples = triples;
