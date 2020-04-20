@@ -3,15 +3,7 @@ import tokenUtils from './tokenUtils';
 import Prefix from '../entities/shexEntities/shexUtils/prefix';
 
 const DEFAULT_SHAPE = 'PREFIX wd: <http://www.wikidata.org/entity/>\n'+
-'PREFIX wdt: <http://www.wikidata.org/prop/direct/>\n\n'+
-
-'<human> {\n'+ 
-'  wdt:P31   wd:Q5    ;\n'+
-'  wdt:P19   .      ? ; \n'+
-'  wdt:P569  .      ? ;\n'+
-'  wdt:P734  .      * ;\n'+
-'  wdt:P106  .      * ;\n'+
-'}';
+'PREFIX wdt: <http://www.wikidata.org/prop/direct/>\n\n';
   
 const VALUESET_SHAPE = 'PREFIX :       <http://example.org/>\n'+
 'PREFIX schema: <http://schema.org/>\n'+
