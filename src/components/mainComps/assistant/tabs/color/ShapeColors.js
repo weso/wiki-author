@@ -5,14 +5,12 @@ import ColorComp from './utils/ColorComp';
 import {SHAPE_PICKERS,
         TRIPLE_PICKERS,
         CONSTRAINT_PICKERS,
-        SHAPEREF_PICKERS,
         CARDINALITY_PICKERS,
         BTNS_PICKERS} from '../../../../../conf/pickers';
 
 import {SHAPE_COLORS,
         TRIPLE_COLORS,
         CONSTRAINT_COLORS,
-        SHAPEREF_COLORS,
         CARDINALITY_COLORS,
         BTNS_COLORS} from '../../../../../conf/colors';
 
@@ -24,7 +22,6 @@ function ShapeColors (props) {
         const shapeStyles = Properties.getInstance().getShapeStyle();
         const tripleStyles = Properties.getInstance().getTripleStyle();
         const constraintStyles = Properties.getInstance().getConstraintStyle();
-        const shapeRefStyles = Properties.getInstance().getShapeRefStyle();
         const cardinalityStyles = Properties.getInstance().getCardinalityStyle();
 
         return ( 
@@ -51,13 +48,6 @@ function ShapeColors (props) {
                                         labelType={constraintStyles.label} 
                                         bodyType={constraintStyles.body}
                                         cookie='constraintColors'/>
-
-
-                        <ColorComp      namespace={SHAPEREF_COLORS} 
-                                        pickers={SHAPEREF_PICKERS} 
-                                        labelType={shapeRefStyles.label}
-                                        bodyType={shapeRefStyles.body}
-                                        cookie='shapeRefColors'/>
                                         
                         <ColorComp      namespace={CARDINALITY_COLORS} 
                                         pickers={CARDINALITY_PICKERS}

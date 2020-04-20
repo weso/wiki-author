@@ -1,8 +1,6 @@
 export const SHAPE_COLORS = {
         label:'#222',
         header:'#C6E2FF',
-        custom:'#3d3d3d',
-        customFill:'#79aff5',
         delete:'#79aff5',
         deleteFill:'#FFFFFF',
         collapse:'#222',
@@ -18,8 +16,6 @@ export const TRIPLE_COLORS = {
         header:'#EFDECD',
         constraint:'#3d3d3d',
         constraintFill:'#b1e086',
-        shapeRef:'#3d3d3d',
-        shapeRefFill:'#f8fa95',
         cardinality:'#3d3d3d',
         cardinalityFill:'#f7adea',
         delete:'#f8a252',
@@ -38,11 +34,6 @@ export const CONSTRAINT_COLORS = {
 };
 
 
-
-export const SHAPEREF_COLORS = {
-        label:'#222',
-        body:'#f5fac8',
-};
 
 export const CARDINALITY_COLORS = {
         label:'#222',

@@ -9,9 +9,7 @@ function ShapeView (props) {
 
         return ( <div className='xs-header' style={styles.header}>            
                         <label style={styles.label}>Shape</label>
-                        <Textbox/> 
-                        <button style={styles.custom} 
-                        className="buildBtn mdc-icon-button material-icons">build</button>
+                        <Textbox/>
                         <button style={styles.delete} 
                         className="deleteShapeBtn mdc-icon-button material-icons" >delete</button>
                         <button style={styles.collapse} 

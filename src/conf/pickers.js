@@ -3,8 +3,6 @@
 export const SHAPE_PICKERS = [
         {tag:'Labels',element:'label'},
         {tag:'Header',element:'header'},
-        {tag:'Custom',element:'custom'},
-        {tag:'Custom Fill',element:'customFill'},
         {tag:'Delete',element:'delete'},
         {tag:'Delete Fill',element:'deleteFill'},
         {tag:'Collapse',element:'collapse'},
@@ -13,12 +11,8 @@ export const SHAPE_PICKERS = [
 export const TRIPLE_PICKERS = [
         {tag:'Labels',element:'label'},
         {tag:'Header',element:'header'},
-        {tag:'Custom',element:'custom'},
-        {tag:'Custom Fill',element:'customFill'},
         {tag:'Constraint',element:'constraint'},
         {tag:'Constraint Fill',element:'constraintFill'},
-        {tag:'Shape Ref',element:'shapeRef'},
-        {tag:'Shape Ref Fill',element:'shapeRefFill'},
         {tag:'Cardinality',element:'cardinality'},
         {tag:'Cardinality Fill',element:'cardinalityFill'},
         {tag:'Delete',element:'delete'},
@@ -28,15 +22,8 @@ export const TRIPLE_PICKERS = [
 
 export const CONSTRAINT_PICKERS = [
         {tag:'Labels',element:'label'},
-        {tag:'Constraint Body',element:'body'},
-        {tag:'Add Value',element:'add'},
-        {tag:'Add Value Fill',element:'addFill'},
-        {tag:'Delete Value',element:'delete'}];
+        {tag:'Constraint Body',element:'body'}];
 
-
-export const SHAPEREF_PICKERS = [
-        {tag:'Labels',element:'label'},
-        {tag:'Shape Ref Body',element:'body'}];
 
 export const CARDINALITY_PICKERS = [
         {tag:'Labels',element:'label'},

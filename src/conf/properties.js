@@ -3,7 +3,6 @@ import { useCookies } from 'react-cookie';
 import {SHAPE_COLORS,
         TRIPLE_COLORS,
         CONSTRAINT_COLORS,
-        SHAPEREF_COLORS,
         CARDINALITY_COLORS,
         PREFIX_COLORS} from './colors';
 
@@ -19,10 +18,6 @@ const Properties = (()=> {
             return {
                 label:{color:SHAPE_COLORS.label},
                 header:{background:SHAPE_COLORS.header},
-                custom:{
-                        color:SHAPE_COLORS.customFill,
-                        background:SHAPE_COLORS.custom
-                },
                 delete:{
                         color:SHAPE_COLORS.deleteFill,
                         background:SHAPE_COLORS.delete
@@ -44,17 +39,9 @@ const Properties = (()=> {
             return {      
                 label:{color:TRIPLE_COLORS.label}, 
                 header:{background:TRIPLE_COLORS.header},
-                custom:{
-                        color:TRIPLE_COLORS.customFill,
-                        background:TRIPLE_COLORS.custom
-                },
                 constraint:{
                         color:TRIPLE_COLORS.constraintFill,
                         background:TRIPLE_COLORS.constraint
-                },
-                shapeRef:{
-                        color:TRIPLE_COLORS.shapeRefFill,
-                        background:TRIPLE_COLORS.shapeRef
                 },
                 cardinality:{
                         color:TRIPLE_COLORS.cardinalityFill,
@@ -81,13 +68,6 @@ const Properties = (()=> {
                         color:CONSTRAINT_COLORS.deleteFill,
                         background:CONSTRAINT_COLORS.delete
                 },
-            };  
-        }
-
-        this.getShapeRefStyle = function(){
-            return {
-                label:{color:SHAPEREF_COLORS.label}, 
-                body:{background:SHAPEREF_COLORS.body}
             };  
         }
 
@@ -130,7 +110,6 @@ const Properties = (()=> {
             this.loadCookie('shapeColors',SHAPE_COLORS);
             this.loadCookie('tripleColors',TRIPLE_COLORS);
             this.loadCookie('constraintColors',CONSTRAINT_COLORS);
-            this.loadCookie('shapeRefColors',SHAPEREF_COLORS);
             this.loadCookie('cardinalityColors',CARDINALITY_COLORS);
 
             //Config
@@ -173,7 +152,6 @@ const Properties = (()=> {
             this.defaultShape = Object.assign({}, SHAPE_COLORS);
             this.defaultTriple = Object.assign({}, TRIPLE_COLORS);
             this.defaultConstraint = Object.assign({}, CONSTRAINT_COLORS);
-            this.defaultShapeRef = Object.assign({}, SHAPEREF_COLORS);
             this.defaultCardinality = Object.assign({}, CARDINALITY_COLORS);
             //Config
             this.defaultConfig = Object.assign({}, DEFAULTS);
@@ -183,7 +161,6 @@ const Properties = (()=> {
             this.load(this.defaultShape,SHAPE_COLORS);
             this.load(this.defaultTriple,TRIPLE_COLORS);
             this.load(this.defaultConstraint,CONSTRAINT_COLORS);
-            this.load(this.defaultShapeRef,SHAPEREF_COLORS);
             this.load(this.defaultCardinality,CARDINALITY_COLORS);
             this.removeCookies();
         }
