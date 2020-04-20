@@ -27,9 +27,8 @@ function EditorComp() {
     
 
     const defaultPrefixes = [
-                new Prefix('','http://example.org/',0),
-                new Prefix('schema','http://schema.org/',1),
-                new Prefix('xsd','http://www.w3.org/2001/XMLSchema#',2)
+                new Prefix('wd','http://www.wikidata.org/entity/',0),
+                new Prefix('wdt','http://www.wikidata.org/prop/direct/',1)
     ]
 
     useEffect(() => {
