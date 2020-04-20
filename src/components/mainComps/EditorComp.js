@@ -22,8 +22,6 @@ function EditorComp() {
     const [yashe,setYashe] = useState(null);
     const divRef = useRef(null);
     const context = useContext(AppContext);
-    let oldShapes = [];
-    let isComplex = false;
     
 
     const defaultPrefixes = [
@@ -47,9 +45,6 @@ function EditorComp() {
             
             y.on('humanEvent', function(shapes,width) {
                 Editor.getInstance().draw(shapes);
-                //console.log(shapes)
-                isComplex=false;
-                oldShapes = shapes;
                 let data={size:{width:width}};
                 context.handleResize(null,data);
             });
@@ -70,64 +65,17 @@ function EditorComp() {
                 }
             })
 
-            //When the sinc is activated we activate the appropriate handlers 
-            //Otherwise it will be desactivated
-            y.on('sinc', function(sinc) {
-                if(sinc){
-                    y._handlers.focus = null;
-                    hideConvert();
-                    if(isComplex)showError(COMPLEX_SHAPE_MSG);
-                    if(y.hasErrors(y))showError(ERROR_EDITOR_MSG);
-        
-                    y.on('keyup',yasheUtils.debounce(function( e ) {
-                        if(!y.hasErrors(y)){
-                            hideError();
-                            let newShapes = getNewShapes();
-                            if(oldShapes.length == newShapes.length){ //Any new shape?
-                                if(newShapes.toString()!=oldShapes.toString()){ //Any cupdate?
-                                    isComplex=false;
-                                    oldShapes = replaceShapes(newShapes);
-                                }
-                            }else{
-                                updateAssist();
-                            } 
-                        }else{
-                            showError(ERROR_EDITOR_MSG);
-                        }   
-                    }, 500));
-
-                     //Fired after a key is handled through a key map
-                    //(for example "Ctrl-Z")
-                    y.on('keyHandled', function() {
-                        if(!y.hasErrors()){
-                            isComplex=false;
-                            oldShapes = replaceShapes(getNewShapes());
-                            updatePrefixes(getNewPrefixes());
-                        }
-                    }); 
-
-
-                }else{
-                    //Not really elegant I know     
-                    y._handlers.keyup = null; 
-                    y._handlers.keyHandled = null; 
-                    if(y.hasErrors(y))showConvert();
-                    if(isComplex)showConvert();
-                    y.on('focus', function() {
-                       showConvert();
-                    });       
-                }
-                
-            });
+            y.on('focus', function() {
+                 showConvert();
+            });  
 
             y.on('prefixChange', function(prefixes,width) {
-                Editor.getInstance().draw(oldShapes,prefixes);
+                Editor.getInstance().draw(getNewShapes(),prefixes);
                 let data={size:{width:width}};
                 context.handleResize(null,data);
             });
 
             y.on('forceError', function(prefixes) {
-                isComplex=true;
                 hideError();
                 loading();
                 setTimeout(function() {
@@ -138,8 +86,7 @@ function EditorComp() {
             });
 
             y.on('delete', function() {
-                isComplex=false;
-                oldShapes = replaceShapes(getNewShapes());
+                replaceShapes(getNewShapes());
                 updatePrefixes(defaultPrefixes);
             });
 
@@ -166,7 +113,7 @@ function EditorComp() {
             
             Editor.getInstance().setYashe(y);
 
-            oldShapes = replaceShapes(getNewShapes());
+            updateAssist();
             updatePrefixes(defaultPrefixes)
 
             CodeMirror.signal(Editor.getInstance().getYashe(),'sinc',DEFAULTS.sincronize);
@@ -185,10 +132,10 @@ function EditorComp() {
     }
 
     const replaceShapes = async (newShapes)=>{
-        loading();
+       // loading();
         let shapes = await newShapes;
         context.replaceShapes(shapes);
-        loaded();
+       // loaded();
         return shapes;
     }
 
@@ -198,14 +145,11 @@ function EditorComp() {
     }
 
 
-    const updateAssist = function(){
+    const updateAssist = async function(){
         hideConvert();
         loading();
-        setTimeout(async function() {
-            isComplex=false;  
-            oldShapes = replaceShapes(await getNewShapes());                
-            loaded();
-        },500)
+        replaceShapes(await getNewShapes());                
+        loaded();
     }
 
 
