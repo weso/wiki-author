@@ -113,18 +113,17 @@ async function getShapes(defShapes){
     refs = [];
     let shapes = [];
     let yashe = Editor.getInstance().getYashe();
-    let asx = defShapes.map(async (shape) => {
+    await Promise.all(defShapes.map(async (shape) => {
         let id  = shapes.length;
         let shapeDef = shape[0].string;
         let shapeType = getType(shapeDef);
         let qualifier = getQualifier(shape[1]);
         let triples = await getTriples(id,shape);
 
-        return shapes.push(new Shape(id,shapeType,triples,qualifier));
+        shapes.push(new Shape(id,shapeType,triples,qualifier));
+        
+    }))
 
-    })
-
-    console.log(shapes)
     return shapes;
 }
 
