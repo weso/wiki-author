@@ -114,13 +114,12 @@ async function getShapes(defShapes){
     let shapes = [];
     let yashe = Editor.getInstance().getYashe();
     await Promise.all(defShapes.map(async (shape,index) => {
-        //let id= await index;
         let shapeDef = shape[0].string;
         let shapeType = getType(shapeDef);
         let qualifier = getQualifier(shape[1]);
         let triples = await getTriples(index,shape);
 
-        shapes.push(new Shape(index,shapeType,triples,qualifier));
+        shapes[index] = new Shape(index,shapeType,triples,qualifier);
 
         
     }))
