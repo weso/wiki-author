@@ -26,11 +26,9 @@ var QUERY_ID = {
         format: 'json',
 }
 
-var first = true;
 
 function TripleHeader (props) {
         
-    const ref = React.createRef();    
 
     const context = useContext(AppContext);
     const shapeContext = useContext(ShapeContext);
@@ -46,35 +44,6 @@ function TripleHeader (props) {
             colapseBtn
             } = props;
 
-
-
-        const getEntities = function(id){
-                let language = (navigator.language || navigator.userLanguage).split("-")[0];
-                var API_ENDPOINT = 'https://www.wikidata.org/w/';
-                var QUERY_ID = {
-                        action:'wbgetentities',
-                        ids:id,
-                        format: 'json', 
-                }
-                $.get({
-                        url: API_ENDPOINT + 'api.php?' + $.param(QUERY_ID),
-                        dataType: 'jsonp',
-                }).done((data)=>{
-                        console.log(data)
-                        console.log(ref)
-                        if(ref.current){
-                                if(data.entities && first){
-                                        console.log('ey')
-                                        first = false;
-                                        ref.current.inputNode.value = data.entities[id].labels[language].value;
-                                }
-                        }
-                       
-                })
-
-              
-                
-        }       
 
     const [name,setName] = useState([triple.type.value]);
     const [options,setOptions] = useState([]);
@@ -107,7 +76,6 @@ function TripleHeader (props) {
                 <AsyncTypeahead
                         id="InputEntityByText"
                         isLoading={isLoading}
-                        ref={ref}
                         labelKey="label"
                         maxResults = {10}
                         minLength={1}

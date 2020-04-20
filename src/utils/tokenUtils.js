@@ -133,6 +133,7 @@ async function getShapes(defShapes){
 *
  */
 function getType(def) {
+    console.log(def)
     let value;
     let yashe = Editor.getInstance().getYashe();
     if(def.startsWith('<')){
@@ -230,7 +231,10 @@ async function getTriple(id,singleTriple,shapeId) {
         if(token.type == 'string-2' || token.type == 'variable-3'){
             let result = await getTypeByID(token.string);
             console.log(result.entities[token.string.split(':')[1]].labels.en.value)
-            type = getType(result.entities[token.string.split(':')[1]].labels.en.value);
+            let yashe = Editor.getInstance().getYashe();
+            let prefixValue = getPrefixValue(yashe.getDefinedPrefixes(),token.string.split(':')[0])
+            let prefix = new Prefix(token.string.split(':')[0],prefixValue);
+            type =  new PrefixedIri(prefix,result.entities[token.string.split(':')[1]].labels.en.value);
         }
         if(token.type == 'constraint' || token.type == 'constraintKeyword' ){
             constraint = getConstraint(token.string);
