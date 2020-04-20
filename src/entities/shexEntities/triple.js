@@ -9,7 +9,7 @@ import {DEFAULTS} from '../../conf/config.js';
 
 class Triple {
 
-    constructor(id,type=new PrefixedIri(new Prefix('schema','http://schema.org/')),constraint=new Primitive(),shapeRef=new ShapeRef(),facets=[],cardinality=new CardinalitySimple()) {
+    constructor(id,type=new PrefixedIri(new Prefix('wdt','http://www.wikidata.org/prop/direct/')),constraint=new Primitive(),shapeRef=new ShapeRef(),facets=[],cardinality=new CardinalitySimple()) {
         this.id = id;
         this.type = type;
         this.constraint = constraint;
