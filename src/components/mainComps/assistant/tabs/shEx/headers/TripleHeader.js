@@ -92,7 +92,7 @@ function TripleHeader (props) {
                         isLoading={isLoading}
                         labelKey="label"
                         maxResults = {10}
-                        minLength={2}
+                        minLength={1}
                         renderMenuItemChildren={(option, props) => (
                                 <MenuItem key={option.id} item={option}/>
                         )}
