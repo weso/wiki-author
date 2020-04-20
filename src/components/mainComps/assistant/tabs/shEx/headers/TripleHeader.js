@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react';
+import React,{useState,useContext,useEffect} from 'react';
 import {AppContext} from '../../../../../../App';
 import {ShapeContext} from '../ShapeComponent';
 import yasheUtils from '../../../../../../utils/yasheUtils';
@@ -21,6 +21,7 @@ var QUERY = {
 }
 
 function TripleHeader (props) {
+        
 
     const context = useContext(AppContext);
     const shapeContext = useContext(ShapeContext);
@@ -37,13 +38,37 @@ function TripleHeader (props) {
             } = props;
 
 
+
+        const getEntities = async function(id){
+                let language = (navigator.language || navigator.userLanguage).split("-")[0];
+                var API_ENDPOINT = 'https://www.wikidata.org/w/';
+                var QUERY_ID = {
+                        action:'wbgetentities',
+                        ids:id,
+                        format: 'json', 
+                }
+                $.get({
+                        url: API_ENDPOINT + 'api.php?' + $.param(QUERY_ID),
+                        dataType: 'jsonp',
+                }).done((data)=>{
+                        let aux = [];
+                        aux.push(data.entities[id].labels[language].value)
+                        setName([])
+                        setName(aux)
+                })
+}       
+
+    const [name,setName] = useState([triple.type.value]);
     const [options,setOptions] = useState([]);
     const [isLoading,setLoading] = useState(false);
 
     const handleNameChange = function(selected){
-        const name = selected[0].id;
-        triple.type.setValue(name);
-        context.emit();
+        
+        if(selected.length>0){
+                triple.type.setValue(selected[0].id);
+                context.emit();
+        }
+        
     }
 
     const MenuItem = ({item}) => (
@@ -55,10 +80,12 @@ function TripleHeader (props) {
     );
 
 
-
-   
     return (
         <div className="xs-tripleHeader" style={styles.header}>
+
+                {
+                        
+                }
                     
                 <AsyncTypeahead
                         id="InputEntityByText"
@@ -72,6 +99,7 @@ function TripleHeader (props) {
                         onSearch={(query) => {
                         setLoading(true);
                         QUERY.search = query;
+                        QUERY.type = 'property';
                         $.get({
                                 url: API_ENDPOINT + 'api.php?' + $.param(QUERY),
                                 dataType: 'jsonp',
@@ -92,6 +120,7 @@ function TripleHeader (props) {
                         onChange={(selected) => {
                                 handleNameChange(selected);
                         }}
+                        defaultSelected={name}
                         options={options}
                 />
     

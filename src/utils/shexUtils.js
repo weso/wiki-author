@@ -65,31 +65,24 @@ function emit(newShapes,width) {
     }
 }
 
+
 function checkPrefixes(){
     const yashe = Editor.getInstance().getYashe();
-    let isExampleDef = false;
-    let isSchemaDef = false;
-    let isXsdDef = false;
+    let isPropDef = false;
+    let isEnityDef = false;
     Object.keys(yashe.getDefinedPrefixes()).map(p=>{
-        if(p==''){
-            isExampleDef=true;
-        }
-        if(p=='schema'){
-            isSchemaDef = true;
+        if(p=='wdt'){
+            isPropDef = true;
         } 
-        if(p=='xsd'){
-            isXsdDef = true;
+        if(p=='wd'){
+            isEnityDef = true;
         }
     })
-
-    if(!isExampleDef){
-        addPrefix('');
+    if(!isPropDef){
+        addPrefix('wdt');
     } 
-    if(!isSchemaDef){
-        addPrefix('schema');
-    } 
-    if(!isXsdDef){
-        addPrefix('xsd');
+    if(!isEnityDef){
+        addPrefix('wd');
     }
 }
 
