@@ -134,13 +134,7 @@ function TripleHeader (props) {
                     build
             </button>
 
-            <button className="tripleBtns buildInlineRef buildBtn buildTripleBtn mdc-icon-button material-icons"  
-                    style={styles.shapeRef}
-                    onClick={customizeRef}
-                    disabled={disabled} 
-                    title="Customize Shape Reference">
-                    build
-            </button>
+       
 
            
             <button className="tripleBtns buildCardinality buildBtn buildTripleBtn mdc-icon-button material-icons" 

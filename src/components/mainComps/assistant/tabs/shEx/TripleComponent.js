@@ -2,7 +2,6 @@ import React,{useState} from 'react';
 import { Collapse } from 'reactstrap';
 import TripleHeader from './headers/TripleHeader';
 import ConstraintComp from './customize/ConstraintComp';
-import ShapeRefComp from './customize/ShapeRefComp';
 import CardinalityComp from './customize/CardinalityComp';
 
 
@@ -10,7 +9,6 @@ function TripleComponent (props) {
     
     const {shape,triple,deleteTriple} = props;
     const [isConstraintsOpen,setConstraintsOpen] = useState(false);
-    const [isRefOpen,setRefOpen] = useState(false);
     const [isCardinalityOpen,setCardinalityOpen] = useState(false);
     const [allCollased,setAllCollapsed] = useState(false);
     const [colapseBtn,setColapseBtn] = useState('menu');
@@ -27,16 +25,6 @@ function TripleComponent (props) {
         }
     }
 
-    const customizeRef = function(){
-        collapseAll(false);
-        setRefOpen(!isRefOpen);
-        setAllCollapsed(false);
-
-        if(allCollased){
-            setRefOpen(true);
-            changeCollapseBtn();
-        }  
-    }
 
 
     const customizeCardinality = function(){
@@ -54,7 +42,6 @@ function TripleComponent (props) {
 
     const collapseAll = function(collapse){
         setConstraintsOpen(collapse);
-        setRefOpen(collapse);
         setCardinalityOpen(collapse);
     }
 
@@ -79,17 +66,12 @@ function TripleComponent (props) {
             <TripleHeader triple={triple} 
                           deleteTriple={deleteTriple} 
                           customizeContraints={customizeContraints}
-                          customizeRef={customizeRef}
                           customizeCardinality={customizeCardinality}
                           collapseToggle={collapseToggle}
                           colapseBtn={colapseBtn}/>
 
             <Collapse   isOpen={isConstraintsOpen}>
                 <ConstraintComp  triple={triple} />           
-            </Collapse> 
-
-             <Collapse  isOpen={isRefOpen}>
-                <ShapeRefComp triple={triple}/>      
             </Collapse> 
 
             <Collapse  isOpen={isCardinalityOpen}>
