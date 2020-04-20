@@ -3,8 +3,8 @@ import {AppContext} from '../../../../../../App';
 import {ShapeContext} from '../ShapeComponent';
 import yasheUtils from '../../../../../../utils/yasheUtils';
 import Properties from '../../../../../../conf/properties';
+import {AsyncTypeahead} from 'react-bootstrap-typeahead';
 import '../../../../../../css/shexComponents/headers/TripleHeader.css';
-
 import $ from 'jquery';
 
 const primitives = ['String','Integer','Date','Boolean','Custom'];
@@ -36,17 +36,17 @@ function TripleHeader (props) {
             colapseBtn
             } = props;
 
-    const [name,setName] = useState(triple.type.value);
-    const [options,setOptions] = useState([]);
 
-    const handleNameChange = function(e){
-        const name = e.target.value;
+    const [options,setOptions] = useState([]);
+    const [isLoading,setLoading] = useState(false);
+
+    const handleNameChange = function(selected){
+        const name = selected[0].id;
         triple.type.setValue(name);
         context.emit();
-        setName(name);
     }
 
- const MenuItem = ({item}) => (
+    const MenuItem = ({item}) => (
         <div className='hintItem'>
             <span>{item.id}</span><br/>
             <span>{item.label}</span><br/>
@@ -55,42 +55,46 @@ function TripleHeader (props) {
     );
 
 
-const handleChange = function(e){
-       
-        QUERY.search = e.target.value;
-   $.get({
-        url: API_ENDPOINT + 'api.php?' + $.param(QUERY),
-        dataType: 'jsonp',
-   }).done((data)=>{
-           let hints=[];
-           let results = data.search;
-           if(results){
-                 Object.keys(results).map(d=>{
-                        hints.push({id:results[d].id,label:results[d].label,descr:results[d].description})
-                })
-           }
-
-        setOptions(hints);
-
-   })
-
-}
 
    
     return (
         <div className="xs-tripleHeader" style={styles.header}>
                     
-           <div className="autocomplete">
-                <input id="myInput" type="text" name="myCountry" placeholder="Country" onChange={handleChange}/>
-                <div className='wikiHints'>
-                {
-                        
-                        Object.keys(options).map(o=>{
-                                return <MenuItem key={options[o].id} item={options[o]}/>
+                <AsyncTypeahead
+                        id="InputEntityByText"
+                        isLoading={isLoading}
+                        labelKey="label"
+                        maxResults = {10}
+                        minLength={2}
+                        renderMenuItemChildren={(option, props) => (
+                                <MenuItem key={option.id} item={option}/>
+                        )}
+                        onSearch={(query) => {
+                        setLoading(true);
+                        QUERY.search = query;
+                        $.get({
+                                url: API_ENDPOINT + 'api.php?' + $.param(QUERY),
+                                dataType: 'jsonp',
+                        }).done((data)=>{
+                                let hints=[];
+                                let results = data.search;
+                                if(results){
+                                        Object.keys(results).map(d=>{
+                                                hints.push({id:results[d].id,label:results[d].label,descr:results[d].description})
+                                        })
+                                }
+
+                                setOptions(hints);
+                                setLoading(false);
                         })
-                }
-                 </div>
-           </div>
+                        
+                        }}
+                        onChange={(selected) => {
+                                handleNameChange(selected);
+                        }}
+                        options={options}
+                />
+    
 
 
             <button className="tripleBtns buildConstraint buildBtn buildTripleBtn mdc-icon-button material-icons"
