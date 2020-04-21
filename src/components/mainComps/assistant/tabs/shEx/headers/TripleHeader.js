@@ -110,7 +110,7 @@ function TripleHeader (props) {
                     style={styles.constraint}
                     onClick={customizeContraints}
                     disabled={disabled} 
-                    title="Customize Constraint">
+                    title="Customize Entities">
                     build
             </button>
 
@@ -129,7 +129,7 @@ function TripleHeader (props) {
                     style={styles.delete}
                     onClick={()=>deleteTriple(triple.id)}
                     disabled={disabled} 
-                    title="Delete Triple Constraint">
+                    title="Delete Property">
                     delete
             </button>
 

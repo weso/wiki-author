@@ -71,8 +71,8 @@ function ConstraintCont (props) {
                         <button    className="xs-addConstraintButton"
                                     style={styles.add} 
                                     onClick={addValue} 
-                                    title="Add Triple">
-                                    + Constraint
+                                    title="Add Entity">
+                                    + Entity
                         </button>     
                     </div>                               
                 </div>

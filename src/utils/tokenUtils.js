@@ -250,7 +250,6 @@ async function getTriple(id,singleTriple,shapeId) {
                 if(isInList(ENTITY_TYPES,type.prefix.prefixValue)){
                     let entity = await getTypeByID(token.string);
                     label = entity.entities[token.string.split(':')[1]].labels.en.value;
-                    //break;
                 }else{
                     label = type.value;
                 }
@@ -260,9 +259,18 @@ async function getTriple(id,singleTriple,shapeId) {
             
         }
         if(token.type == 'constraint' || token.type == 'constraintKeyword' ){
-            let entity = await getTypeByID(token.string);
-            cLabel = entity.entities[token.string.split(':')[1]].labels.en.value;
             constraint = getConstraint(token.string);
+            if(constraint.getTypeName()=='prefixedIri'){
+                if(isInList(ENTITY_TYPES,constraint.prefix.prefixValue)){
+                    let entity = await getTypeByID(token.string);
+                    cLabel = entity.entities[token.string.split(':')[1]].labels.en.value;
+                }else{
+                    label = type.value;
+                }
+            }else{
+                label = type.value;
+            }   
+            
         }
         
 

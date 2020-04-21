@@ -52,7 +52,7 @@ function MultiConstraint (props) {
 
     return (        
             <div className='xs-gridBox-constraint'>
-                    <label className='gridLabel' style={styles.label}>Constraint</label>
+                    <label className='gridLabel' style={styles.label}>Entity</label>
                     <AsyncTypeahead
                         id="InputEntityByText"
                         isLoading={isLoading}
@@ -91,7 +91,7 @@ function MultiConstraint (props) {
                 <button className="valueSetBtns deleteTripleBtn mdc-icon-button material-icons"
                     style={styles.delete}
                     onClick={()=>deleteValue(valueSet.id)}
-                    title="Delete Constraint">
+                    title="Delete Entity">
                     delete
             </button>
         </div>

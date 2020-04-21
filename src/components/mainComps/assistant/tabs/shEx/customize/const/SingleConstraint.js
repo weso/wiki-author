@@ -61,7 +61,7 @@ function SingleConstraint (props) {
 
     return (        
             <div className='xs-gridBox'>
-                    <label className='gridLabel' style={styles.label}>Constraint</label>
+                    <label className='gridLabel' style={styles.label}>Entity</label>
                     <AsyncTypeahead
                         id="InputEntityByText"
                         isLoading={isLoading}
