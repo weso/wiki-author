@@ -38,6 +38,7 @@ function SingleConstraint (props) {
             triple.setConstraint('prefixedIri');
             triple.constraint.prefix = new Prefix('wd','http://www.wikidata.org/entity/')
             triple.constraint.setValue(selected[0].id);
+            triple.cLabel = selected[0].label;
             context.emit();
         }
     }

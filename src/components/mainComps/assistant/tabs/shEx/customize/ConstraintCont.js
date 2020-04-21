@@ -15,9 +15,10 @@ function ConstraintCont (props) {
     const context = useContext(AppContext);
     const {triple} = props;
     const styles = Properties.getInstance().getConstraintStyle();
+    const [type,setType] = useState(triple.constraint.getTypeName());
 
     let initValues = [];
-    if(triple.constraint.getTypeName()=='valueSet'){
+    if(type =='valueSet'){
         initValues = triple.constraint.values;
     }
     const [values,setValues] = useState(initValues);
@@ -30,13 +31,33 @@ function ConstraintCont (props) {
     }
 
     const addValue = function(){
-        const value = shexUtils.addValueSetValue(triple.constraint);
+        const value = shexUtils.addValueSetValue(triple.constraint.values);
         setValues([...values,value]);
         triple.constraint.addValue(value);
         context.emit(); 
     }
 
-    if(triple.constraint.getTypeName()=='valueSet'){
+    const addValueSet = function(){
+        const prevValue = triple.constraint.value;
+        const prevLabel = triple.cLabel;
+        triple.setConstraint('valueSet');
+        setType('valueSet');
+        let value = shexUtils.addValueSetValue(triple.constraint.values);
+        value.type.value = prevValue;
+        value.label = prevLabel;
+        triple.constraint.addValue(value);
+        
+        value = shexUtils.addValueSetValue(triple.constraint.values);
+        triple.constraint.addValue(value);
+
+        setValues(triple.constraint.values);
+        context.emit(); 
+    }
+
+
+    
+
+    if(type =='valueSet'){
         return (
                 <div style={styles.body}>
 
@@ -66,8 +87,8 @@ function ConstraintCont (props) {
                     <SingleConstraint triple={triple} />
                     <div className='xs-gridBox'> 
                         <button    className="xs-addConstraintButton"
-                                    style={styles.addTriple} 
-                                    onClick={addValue} 
+                                    style={styles.add} 
+                                    onClick={addValueSet} 
                                     title="Add Triple">
                                     + Constraint
                         </button>

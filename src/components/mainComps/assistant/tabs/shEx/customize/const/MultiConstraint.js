@@ -24,6 +24,8 @@ function MultiConstraint (props) {
     const styles = Properties.getInstance().getConstraintStyle();
 
 
+        console.log(valueSet)
+
     const [name,setName] = useState([{id:valueSet.type.value,label:valueSet.label}]);
     const [options,setOptions] = useState([]);
     const [isLoading,setLoading] = useState(false);
@@ -34,6 +36,7 @@ function MultiConstraint (props) {
             valueSet.setType('prefixedIri');
             valueSet.type.prefix = new Prefix('wd','http://www.wikidata.org/entity/')
             valueSet.type.setValue(selected[0].id);
+            valueSet.label = selected[0].label;
             context.emit();
         }
     }
