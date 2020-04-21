@@ -63,7 +63,7 @@ function ConstraintCont (props) {
 
                 {
                     values.map(c=>{
-                        return   <MultiConstraint valueSet={c} key={c.id}/>
+                        return   <MultiConstraint valueSet={c} key={c.id} deleteValue={deleteValue}/>
                     })
                 }
                         

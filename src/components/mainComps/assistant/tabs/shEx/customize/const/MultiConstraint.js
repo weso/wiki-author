@@ -20,7 +20,7 @@ var QUERY = {
 function MultiConstraint (props) {
 
     const context = useContext(AppContext);
-    const {valueSet} = props;
+    const {valueSet,deleteValue} = props;
     const styles = Properties.getInstance().getConstraintStyle();
 
 
@@ -90,8 +90,8 @@ function MultiConstraint (props) {
                 />
                 <button className="valueSetBtns deleteTripleBtn mdc-icon-button material-icons"
                     style={styles.delete}
-               
-                    title="Delete Triple Constraint">
+                    onClick={()=>deleteValue(valueSet.id)}
+                    title="Delete Constraint">
                     delete
             </button>
         </div>
