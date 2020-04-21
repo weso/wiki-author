@@ -31,7 +31,7 @@ function ConstraintComp (props) {
         init = triple.constraint.value=='none' ?  '' : triple.constraint.value;
     }
     
-    const [name,setName] = useState([init]);
+    const [name,setName] = useState([{id:init,label:triple.cLabel}]);
     const [options,setOptions] = useState([]);
     const [isLoading,setLoading] = useState(false);
 

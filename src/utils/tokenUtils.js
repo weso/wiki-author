@@ -218,6 +218,7 @@ async function getTriples(shapeId,shape) {
 async function getTriple(id,singleTriple,shapeId) {   
     let type;
     let label='';
+    let cLabel = '';
     let constraint;
     let valueSet = [];
     let facets = [];
@@ -231,6 +232,8 @@ async function getTriple(id,singleTriple,shapeId) {
             type = getType(token.string);
         }
         if(token.type == 'constraint' || token.type == 'constraintKeyword' ){
+            let result = await getTypeByID(token.string);
+            cLabel = result.entities[token.string.split(':')[1]].labels.en.value;
             constraint = getConstraint(token.string);
         }
         
@@ -292,7 +295,7 @@ async function getTriple(id,singleTriple,shapeId) {
   
     }
     if(valueSet.length>0)constraint=new ValueSet(valueSet);
-    return new Triple(id,type,label,constraint,shapeRef,facets,cardinality);
+    return new Triple(id,type,label,constraint,cLabel,shapeRef,facets,cardinality);
 }
 
 /**
