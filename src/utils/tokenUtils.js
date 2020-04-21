@@ -132,6 +132,7 @@ function getDefinedShapes(tokens){
 *
  */
 async function getShapes(defShapes){
+    isWikiComplex = false;
     refs = [];
     let shapes = [];
     let yashe = Editor.getInstance().getYashe();
@@ -177,15 +178,24 @@ async function getTypeByID(def) {
     var API_ENDPOINT = 'https://www.wikidata.org/w/';
     var QUERY_ID = {
             action:'wbgetentities',
-            ids:def.split(':')[1],
+            ids:def.split(':')[1].toUpperCase(),
             format: 'json', 
     }
 
-    let result = await $.get({
-            url: API_ENDPOINT + 'api.php?' + $.param(QUERY_ID),
-            dataType: 'jsonp',
-    })
-    return result;
+    try{
+        let result = await $.get({
+                    url: API_ENDPOINT + 'api.php?' + $.param(QUERY_ID),
+                    dataType: 'jsonp',
+            })
+
+        return result.entities[QUERY_ID.ids].labels.en.value;
+    }catch(err){
+        console.log(NO_WIKI_MSG)
+        console.log(err)
+        isWikiComplex = true;
+    }
+    
+    
 }
 
 
@@ -253,8 +263,7 @@ async function getTriple(id,singleTriple,shapeId) {
             type = getType(token.string);
             if(type.getTypeName()=='prefixedIri'){
                 if(isInList(ENTITY_TYPES,type.prefix.prefixValue)){
-                    let entity = await getTypeByID(token.string);
-                    label = entity.entities[token.string.split(':')[1]].labels.en.value;
+                    label = await getTypeByID(token.string);
                 }else{
                      isWikiComplex = true;
                 }
@@ -267,8 +276,7 @@ async function getTriple(id,singleTriple,shapeId) {
             constraint = getConstraint(token.string);
             if(constraint.getTypeName()=='prefixedIri'){
                 if(isInList(ENTITY_TYPES,constraint.prefix.prefixValue)){
-                    let entity = await getTypeByID(token.string);
-                    cLabel = entity.entities[token.string.split(':')[1]].labels.en.value;
+                    cLabel = await getTypeByID(token.string);
                 }else{
                     isWikiComplex = true;
                 }
@@ -283,8 +291,7 @@ async function getTriple(id,singleTriple,shapeId) {
             if(token.string.startsWith('@')){// LANTAG NOT SUPPORTED AT THE MOMENT
                 Codemirror.signal(Editor.getInstance().getYashe(),'forceError','LANTAG_ERR');
             }else{
-                let result = await getTypeByID(token.string);
-                let entity = result.entities[token.string.split(':')[1]].labels.en.value
+                let entity = await getTypeByID(token.string);
                 valueSet.push(new ValueSetValue(valueSet.length,getValueSetValue(token.string),entity));
             }
         }
