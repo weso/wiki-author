@@ -29,14 +29,14 @@ function ConstraintCont (props) {
                     })
                 }
                     
-                   
-                 <button    className="xs-addConstraintButton"
-                            style={styles.addTriple} 
-                            onClick={addConstraint} 
-                            title="Add Triple">
-                            + Constraint
-                </button>     
-                                               
+                <div className='xs-gridBox'> 
+                    <button    className="xs-addConstraintButton"
+                                style={styles.add} 
+                                onClick={addConstraint} 
+                                title="Add Triple">
+                                + Constraint
+                    </button>     
+                </div>                               
                 </div>
   
     );

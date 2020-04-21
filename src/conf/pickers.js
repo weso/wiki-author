@@ -22,7 +22,9 @@ export const TRIPLE_PICKERS = [
 
 export const CONSTRAINT_PICKERS = [
         {tag:'Labels',element:'label'},
-        {tag:'Constraint Body',element:'body'}];
+        {tag:'Constraint Body',element:'body'},        
+        {tag:'Add Value',element:'add'},
+        {tag:'Add Value Fill',element:'addFill'},];
 
 
 export const CARDINALITY_PICKERS = [
