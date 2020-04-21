@@ -4,7 +4,7 @@ import Prefix from './prefix';
 
 class ValueSetValue {
 
-     constructor(id,type=new PrefixedIri(new Prefix('schema','http://schema.org/')),label=''){
+     constructor(id,type=new PrefixedIri(new Prefix('wd','http://www.wikidata.org/entity/')),label=''){
         this.id = id;
         this.type = type;
         this.label = label;
