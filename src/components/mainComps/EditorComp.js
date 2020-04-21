@@ -22,7 +22,7 @@ function EditorComp() {
     const [yashe,setYashe] = useState(null);
     const divRef = useRef(null);
     const context = useContext(AppContext);
-    
+    let isLoading = false;
 
     const defaultPrefixes = [
                 new Prefix('wd','http://www.wikidata.org/entity/',0),
@@ -66,8 +66,14 @@ function EditorComp() {
             })
 
             y.on('focus', function() {
-                 showConvert();
-            });  
+                if(!isLoading){
+                    showConvert();
+                }
+            });
+
+            y.on('keyup', function() {
+                showConvert();
+            }); 
 
             y.on('prefixChange', function(prefixes,width) {
                 Editor.getInstance().draw(getNewShapes(),prefixes);
@@ -162,11 +168,13 @@ function EditorComp() {
      }
 
     const loading = function(){
+        isLoading = true;
         animate('showAsist','hideAsist','hideLoader','showLoader');
     }
 
     const loaded = function(){
-         animate('showLoader','hideLoader','hideAsist','showAsist');
+        isLoading = false;
+        animate('showLoader','hideLoader','hideAsist','showAsist');
     }
 
     const showError = function(err){
