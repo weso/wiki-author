@@ -4,9 +4,10 @@ import Prefix from './prefix';
 
 class ValueSetValue {
 
-     constructor(id,type=new PrefixedIri(new Prefix('schema','http://schema.org/'))){
+     constructor(id,type=new PrefixedIri(new Prefix('schema','http://schema.org/')),label=''){
         this.id = id;
         this.type = type;
+        this.label = label;
         this.factory = new TypesFactory();
     }
 

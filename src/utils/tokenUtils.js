@@ -227,13 +227,13 @@ async function getTriple(id,singleTriple,shapeId) {
     for(let i=0;i<singleTriple.length;i++){
         let token = singleTriple[i];
         if(token.type == 'string-2' || token.type == 'variable-3'){
-            let result = await getTypeByID(token.string);
-            label = result.entities[token.string.split(':')[1]].labels.en.value;
+            let entity = await getTypeByID(token.string);
+            label = entity.entities[token.string.split(':')[1]].labels.en.value;
             type = getType(token.string);
         }
         if(token.type == 'constraint' || token.type == 'constraintKeyword' ){
-            let result = await getTypeByID(token.string);
-            cLabel = result.entities[token.string.split(':')[1]].labels.en.value;
+            let entity = await getTypeByID(token.string);
+            cLabel = entity.entities[token.string.split(':')[1]].labels.en.value;
             constraint = getConstraint(token.string);
         }
         
@@ -242,7 +242,9 @@ async function getTriple(id,singleTriple,shapeId) {
             if(token.string.startsWith('@')){// LANTAG NOT SUPPORTED AT THE MOMENT
                 Codemirror.signal(Editor.getInstance().getYashe(),'forceError','LANTAG_ERR');
             }else{
-                 valueSet.push(new ValueSetValue(valueSet.length,getValueSetValue(token.string)));
+                let result = await getTypeByID(token.string);
+                let entity = result.entities[token.string.split(':')[1]].labels.en.value
+                valueSet.push(new ValueSetValue(valueSet.length,getValueSetValue(token.string),entity));
             }
         }
 

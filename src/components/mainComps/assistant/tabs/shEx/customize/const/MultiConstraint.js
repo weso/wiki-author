@@ -24,7 +24,7 @@ function MultiConstraint (props) {
     const styles = Properties.getInstance().getConstraintStyle();
 
 
-    const [name,setName] = useState([{id:valueSet.type.value,label:valueSet.type.value}]);
+    const [name,setName] = useState([{id:valueSet.type.value,label:valueSet.label}]);
     const [options,setOptions] = useState([]);
     const [isLoading,setLoading] = useState(false);
 
