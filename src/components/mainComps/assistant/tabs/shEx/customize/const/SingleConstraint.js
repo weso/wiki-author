@@ -1,4 +1,4 @@
-import React,{useState,useContext,useEffect} from 'react';
+import React,{useState,useContext} from 'react';
 import { Collapse } from 'reactstrap';
 import {AppContext} from '../../../../../../../App';
 import {AsyncTypeahead} from 'react-bootstrap-typeahead';
@@ -27,6 +27,12 @@ function SingleConstraint (props) {
     if(triple.constraint){
         init = triple.constraint.value=='none' ?  '' : triple.constraint.value;
     }
+
+    if(init == ''){
+       if(triple.shapeRef.shape != null){
+            triple.setConstraint('blankType');
+        }
+    }
    
     const [name,setName] = useState([{id:init,label:triple.cLabel}]);
     const [options,setOptions] = useState([]);
@@ -43,16 +49,6 @@ function SingleConstraint (props) {
         }
     }
 
-    const checkRefs = function(name){
-        if(name =='none'){
-            if(triple.shapeRef.shape != null){
-                setName('');
-                triple.setConstraint('blankType');
-            }
-        }
-    }
- 
-
     const MenuItem = ({item}) => (
         <div className='hintItem'>
             <span>{item.id}</span><br/>
@@ -61,7 +57,7 @@ function SingleConstraint (props) {
         </div>
     );
 
-    checkRefs(name);
+
 
     return (        
             <div className='xs-gridBox'>
