@@ -4,6 +4,7 @@ import {ShapeContext} from '../ShapeComponent';
 import yasheUtils from '../../../../../../utils/yasheUtils';
 import Properties from '../../../../../../conf/properties';
 import {AsyncTypeahead} from 'react-bootstrap-typeahead';
+import Prefix from '../../../../../../entities/shexEntities/shexUtils/prefix';
 import '../../../../../../css/shexComponents/headers/TripleHeader.css';
 import $ from 'jquery';
 
@@ -43,8 +44,8 @@ function TripleHeader (props) {
     const [isLoading,setLoading] = useState(false);
 
     const handleNameChange = function(selected){
-        
         if(selected.length>0){
+                triple.type.prefix = new Prefix('wd','http://www.wikidata.org/entity/')
                 triple.type.setValue(selected[0].id);
                 context.emit();
         }

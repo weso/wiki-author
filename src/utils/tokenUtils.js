@@ -247,14 +247,17 @@ async function getTriple(id,singleTriple,shapeId) {
         if(token.type == 'string-2' || token.type == 'variable-3'){
             type = getType(token.string);
             if(type.getTypeName()=='prefixedIri'){
-                console.log(isInList(ENTITY_TYPES,type.prefix.prefixValue))
                 if(isInList(ENTITY_TYPES,type.prefix.prefixValue)){
                     let entity = await getTypeByID(token.string);
                     label = entity.entities[token.string.split(':')[1]].labels.en.value;
-                    break;
+                    //break;
+                }else{
+                    label = type.value;
                 }
+            }else{
+                label = type.value;
             }   
-            label = type.value;
+            
         }
         if(token.type == 'constraint' || token.type == 'constraintKeyword' ){
             let entity = await getTypeByID(token.string);
