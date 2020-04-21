@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/wiki-author/static/css/main.d6f5180b.chunk.css",
-    "main.js": "/wiki-author/static/js/main.44f3b75e.chunk.js",
-    "main.js.map": "/wiki-author/static/js/main.44f3b75e.chunk.js.map",
+    "main.js": "/wiki-author/static/js/main.11052251.chunk.js",
+    "main.js.map": "/wiki-author/static/js/main.11052251.chunk.js.map",
     "runtime-main.js": "/wiki-author/static/js/runtime-main.911031fc.js",
     "runtime-main.js.map": "/wiki-author/static/js/runtime-main.911031fc.js.map",
     "static/css/2.e053c324.chunk.css": "/wiki-author/static/css/2.e053c324.chunk.css",
     "static/js/2.5d3145b6.chunk.js": "/wiki-author/static/js/2.5d3145b6.chunk.js",
     "static/js/2.5d3145b6.chunk.js.map": "/wiki-author/static/js/2.5d3145b6.chunk.js.map",
     "index.html": "/wiki-author/index.html",
-    "precache-manifest.ff1b88a2c120ef135ce4a3514e71065d.js": "/wiki-author/precache-manifest.ff1b88a2c120ef135ce4a3514e71065d.js",
+    "precache-manifest.1a6662d926bbcf2e10192c08c849341f.js": "/wiki-author/precache-manifest.1a6662d926bbcf2e10192c08c849341f.js",
     "service-worker.js": "/wiki-author/service-worker.js",
     "static/css/2.e053c324.chunk.css.map": "/wiki-author/static/css/2.e053c324.chunk.css.map",
     "static/css/main.d6f5180b.chunk.css.map": "/wiki-author/static/css/main.d6f5180b.chunk.css.map"
@@ -19,6 +19,6 @@
     "static/css/2.e053c324.chunk.css",
     "static/js/2.5d3145b6.chunk.js",
     "static/css/main.d6f5180b.chunk.css",
-    "static/js/main.44f3b75e.chunk.js"
+    "static/js/main.11052251.chunk.js"
   ]
 }
