@@ -75,12 +75,13 @@ function EditorComp() {
                 context.handleResize(null,data);
             });
 
-            y.on('forceError', function(prefixes) {
+            y.on('forceError', function(err) {
+                if(!err)err=COMPLEX_SHAPE_MSG;
                 hideError();
                 loading();
                 setTimeout(function() {
                     loaded(); 
-                    showError(COMPLEX_SHAPE_MSG);
+                    showError(err);
                     if(!DEFAULTS.sincronize)showConvert();
                 },500)
             });

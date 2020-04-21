@@ -55,6 +55,9 @@ const ENTITY_TYPES = [
     'http://www.wikidata.org/entity/'
 ];
 
+const NO_WIKI_MSG = 'Please, introduce just wikidata entities or properties';
+
+
 
 let refs;
 /**
@@ -251,10 +254,10 @@ async function getTriple(id,singleTriple,shapeId) {
                     let entity = await getTypeByID(token.string);
                     label = entity.entities[token.string.split(':')[1]].labels.en.value;
                 }else{
-                    label = type.value;
+                     Codemirror.signal(Editor.getInstance().getYashe(),'forceError',NO_WIKI_MSG);
                 }
             }else{
-                label = type.value;
+                 Codemirror.signal(Editor.getInstance().getYashe(),'forceError',NO_WIKI_MSG);
             }   
             
         }
@@ -265,10 +268,10 @@ async function getTriple(id,singleTriple,shapeId) {
                     let entity = await getTypeByID(token.string);
                     cLabel = entity.entities[token.string.split(':')[1]].labels.en.value;
                 }else{
-                    label = type.value;
+                    Codemirror.signal(Editor.getInstance().getYashe(),'forceError',NO_WIKI_MSG);
                 }
             }else{
-                label = type.value;
+                Codemirror.signal(Editor.getInstance().getYashe(),'forceError',NO_WIKI_MSG);
             }   
             
         }
