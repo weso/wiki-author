@@ -60,6 +60,7 @@ const NO_WIKI_MSG = 'Please, introduce just wikidata entities or properties';
 
 
 let refs;
+let isWikiComplex = false;
 /**
 *   Obtains all the current tokens in the editor
 *   @return {Array} tokens
@@ -143,6 +144,7 @@ async function getShapes(defShapes){
         shapes[index] = new Shape(index,shapeType,triples,qualifier);
     }))
 
+    if(await isWikiComplex)Codemirror.signal(Editor.getInstance().getYashe(),'forceError',NO_WIKI_MSG);
     return shapes;
 }
 
@@ -254,10 +256,10 @@ async function getTriple(id,singleTriple,shapeId) {
                     let entity = await getTypeByID(token.string);
                     label = entity.entities[token.string.split(':')[1]].labels.en.value;
                 }else{
-                     Codemirror.signal(Editor.getInstance().getYashe(),'forceError',NO_WIKI_MSG);
+                     isWikiComplex = true;
                 }
             }else{
-                 Codemirror.signal(Editor.getInstance().getYashe(),'forceError',NO_WIKI_MSG);
+                isWikiComplex = true;
             }   
             
         }
@@ -268,10 +270,10 @@ async function getTriple(id,singleTriple,shapeId) {
                     let entity = await getTypeByID(token.string);
                     cLabel = entity.entities[token.string.split(':')[1]].labels.en.value;
                 }else{
-                    Codemirror.signal(Editor.getInstance().getYashe(),'forceError',NO_WIKI_MSG);
+                    isWikiComplex = true;
                 }
             }else{
-                Codemirror.signal(Editor.getInstance().getYashe(),'forceError',NO_WIKI_MSG);
+                isWikiComplex = true;
             }   
             
         }
@@ -335,6 +337,7 @@ async function getTriple(id,singleTriple,shapeId) {
         }
   
     }
+
     if(valueSet.length>0)constraint=new ValueSet(valueSet);
     return new Triple(id,type,label,constraint,cLabel,shapeRef,facets,cardinality);
 }
