@@ -17,6 +17,23 @@
     grid-template-columns: 10% 20% 48%;
 }
 
+.xs-gridBox-constraint{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 0% 25% 59% 8%;
+    padding: 5px;
+}
+
+.gridBox-constraint{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 10% 20% 38% 10%;
+}
+
+
+.valueSetBtns{
+    height: 100%;
+}
 
 .customLabel{
     grid-column: 2/3;

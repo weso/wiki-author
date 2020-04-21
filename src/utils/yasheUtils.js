@@ -5,12 +5,10 @@ import Prefix from '../entities/shexEntities/shexUtils/prefix';
 const DEFAULT_SHAPE = 'PREFIX wd: <http://www.wikidata.org/entity/>\n'+
 'PREFIX wdt: <http://www.wikidata.org/prop/direct/>\n\n'+
 '<human>{\n'+
-'  wdt:P31   wd:Q5   ;\n'+
-'  wdt:P19  .     ? ;\n'+
-'  wdt:P569 .    ? ;\n'+
-'  wdt:P735 .    * ;\n'+
-'  wdt:P734 .    * ;\n'+
-'  wdt:P106 .    * ;\n'+
+'  wdt:P31   [wd:Q5] ;\n'+
+'  wdt:P21   [wd:Q6581097 wd:Q6581072 wd:Q1097630 wd:Q1052281 wd:Q2449503 wd:Q48270]?;\n'+
+'  wdt:P19   .      ? ;\n'+
+'  wdt:P569  .      ? ;\n'+
 '}';
   
 const VALUESET_SHAPE = 'PREFIX wd: <http://www.wikidata.org/entity/>\n'+

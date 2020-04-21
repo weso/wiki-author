@@ -12,18 +12,10 @@ import CodeMirror from 'codemirror';
 function Config (props) {
 
         const context = useContext(AppContext);
-        const [sinc, setSinc] = useState(DEFAULTS.sincronize);
         const [pretty, setPretty] = useState(DEFAULTS.pretty);
         const [saveColors, setSaveColors] = useState(DEFAULTS.saveColors);
         const [cookies, setCookies] = useCookies('cookies');
 
-        const handleSincChange = function(e){
-            setSinc(!sinc);
-            DEFAULTS.sincronize = !sinc;
-            setCookies('conf', DEFAULTS, { path: '/' }); 
-            let yashe = Editor.getInstance().getYashe();    
-            CodeMirror.signal(yashe,'sinc',!sinc);
-        }
 
         const handlePrettyChange = function(e){
             let newPretty = e.target.value;
@@ -48,19 +40,12 @@ function Config (props) {
             let confirm = window.confirm('Are you sure?');
             if(confirm){
                 Properties.getInstance().restoreDefaultConfig();
-                setSinc(DEFAULTS.sincronize);
                 setSaveColors(DEFAULTS.saveColors);
                 setPretty(DEFAULTS.pretty);
             }
         }
 
         return ( <div>
-                    <div className='option'>
-                        <span>Sincronize Editor</span>
-                        <div className='togleContainer'>
-                            <Toggle  checked={sinc}  icons={false} onChange={handleSincChange}/>
-                        </div>
-                    </div>
                     <div className='option'>
                         <span>Save Color Preferences</span>
                         <div className='togleContainer'>
