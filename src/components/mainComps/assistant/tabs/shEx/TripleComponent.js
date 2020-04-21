@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import { Collapse } from 'reactstrap';
 import TripleHeader from './headers/TripleHeader';
-import ConstraintComp from './customize/ConstraintComp';
+import ConstraintCont from './customize/ConstraintCont';
 import CardinalityComp from './customize/CardinalityComp';
 
 
@@ -71,7 +71,7 @@ function TripleComponent (props) {
                           colapseBtn={colapseBtn}/>
 
             <Collapse   isOpen={isConstraintsOpen}>
-                <ConstraintComp  triple={triple} />           
+                <ConstraintCont  triple={triple} />           
             </Collapse> 
 
             <Collapse  isOpen={isCardinalityOpen}>

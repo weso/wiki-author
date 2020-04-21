@@ -1,13 +1,10 @@
 import React,{useState,useContext,useEffect} from 'react';
 import { Collapse } from 'reactstrap';
-import {AppContext} from '../../../../../../App';
+import {AppContext} from '../../../../../../../App';
 import {AsyncTypeahead} from 'react-bootstrap-typeahead';
-import Properties from '../../../../../../conf/properties';
-import Prefix from '../../../../../../entities/shexEntities/shexUtils/prefix';
+import Properties from '../../../../../../../conf/properties';
+import Prefix from '../../../../../../../entities/shexEntities/shexUtils/prefix';
 import $ from 'jquery';
-
-const primitives = ['String','Integer','Date','Boolean'];
-const iriStr ='<...>';
 
 
 var API_ENDPOINT = 'https://www.wikidata.org/w/';
@@ -20,39 +17,27 @@ var QUERY = {
   format: 'json',
 }
 
-function ConstraintComp (props) {
+function MultiConstraint (props) {
 
     const context = useContext(AppContext);
-    const {triple} = props;
+    const {valueSet} = props;
     const styles = Properties.getInstance().getConstraintStyle();
-   
-    let init = '';
-    if(triple.constraint){
-        init = triple.constraint.value=='none' ?  '' : triple.constraint.value;
-    }
-    
-    const [name,setName] = useState([{id:init,label:triple.cLabel}]);
+
+
+    const [name,setName] = useState([{id:valueSet.type.value,label:valueSet.type.value}]);
     const [options,setOptions] = useState([]);
     const [isLoading,setLoading] = useState(false);
 
 
     const handleNameChange = function(selected){
         if(selected.length>0){
-            triple.setConstraint('prefixedIri');
-            triple.constraint.prefix = new Prefix('wd','http://www.wikidata.org/entity/')
-            triple.constraint.setValue(selected[0].id);
+            valueSet.setType('prefixedIri');
+            valueSet.type.prefix = new Prefix('wd','http://www.wikidata.org/entity/')
+            valueSet.type.setValue(selected[0].id);
             context.emit();
         }
     }
 
-    const checkRefs = function(name){
-        if(name =='none'){
-            if(triple.shapeRef.shape != null){
-                setName('');
-                triple.setConstraint('blankType');
-            }
-        }
-    }
 
     const MenuItem = ({item}) => (
         <div className='hintItem'>
@@ -62,10 +47,10 @@ function ConstraintComp (props) {
         </div>
     );
 
-    checkRefs(name);
 
-    return (
-                <div className="xs-gridBox" style={styles.body}>
+
+    return (        
+            <div className='xs-gridBox'>
                     <label className='gridLabel' style={styles.label}>Constraint</label>
                     <AsyncTypeahead
                         id="InputEntityByText"
@@ -102,14 +87,12 @@ function ConstraintComp (props) {
                         defaultSelected={name}
                         options={options}
                 />
-                                               
-                </div>
-  
+        </div>
     );
                                    
     
 }
 
 
-export default ConstraintComp;
+export default MultiConstraint;
 

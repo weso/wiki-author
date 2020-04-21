@@ -139,6 +139,34 @@ label{
 }
 
 
+.xs-addConstraintButton{
+    grid-column: 2/4;
+    margin-left:130px;
+    margin-right: 130px;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 1px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    -webkit-transition: margin 0.5s ease-in-out;
+    transition: margin 0.5s ease-in-out;
+}
+
+.xs-addConstraintButton:hover{
+    margin-left:0px;
+    margin-right: 0px;
+}
+
+
+.xs-addConstraintButton:focus{
+    outline: none;
+}
+
+.constraintRow{
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
 .constraint{
     padding: 8px;
     color: black;

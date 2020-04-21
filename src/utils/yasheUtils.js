@@ -13,14 +13,11 @@ const DEFAULT_SHAPE = 'PREFIX wd: <http://www.wikidata.org/entity/>\n'+
 '  wdt:P106 .    * ;\n'+
 '}';
   
-const VALUESET_SHAPE = 'PREFIX :       <http://example.org/>\n'+
-'PREFIX schema: <http://schema.org/>\n'+
-'PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>\n\n'+
-
-':User IRI {\n'+ 
-'  schema:name          [xsd:string 34 "esd" <asds> false ] ;\n'+
+const VALUESET_SHAPE = 'PREFIX wd: <http://www.wikidata.org/entity/>\n'+
+'PREFIX wdt: <http://www.wikidata.org/prop/direct/>\n\n'+
+'<human>{\n'+
+'  wdt:P31   [wd:Q5 wd:Q42]   ;\n'+
 '}';
-  
 
   let prefixCount = 0;
   
