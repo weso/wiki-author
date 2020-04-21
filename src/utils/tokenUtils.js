@@ -37,6 +37,24 @@ import $ from 'jquery';
 //HAY QUE METER TODOS (Update... igual no hace falta...)
 const PRIMITIVES = ['string','integer','date','boolean'];
 
+const ENTITY_TYPES = [
+    'http://www.wikidata.org/prop/direct/',
+    'http://www.wikidata.org/prop/direct-normalized/',
+    'http://www.wikidata.org/prop/',
+    'http://www.wikidata.org/prop/novalue/',
+    'http://www.wikidata.org/prop/statement/',
+    'http://www.wikidata.org/prop/statement/value/',
+    'http://www.wikidata.org/prop/statement/value-normalized/',
+    'http://www.wikidata.org/prop/qualifier/',
+    'http://www.wikidata.org/prop/qualifier/value/',
+    'http://www.wikidata.org/prop/qualifier/value-normalized/',
+    'http://www.wikidata.org/prop/reference/',
+    'http://www.wikidata.org/prop/reference/value/',
+    'http://www.wikidata.org/prop/reference/value-normalized/',
+    'http://www.wikidata.org/wiki/Special:EntityData/',
+    'http://www.wikidata.org/entity/'
+];
+
 
 let refs;
 /**
@@ -227,9 +245,16 @@ async function getTriple(id,singleTriple,shapeId) {
     for(let i=0;i<singleTriple.length;i++){
         let token = singleTriple[i];
         if(token.type == 'string-2' || token.type == 'variable-3'){
-            let entity = await getTypeByID(token.string);
-            label = entity.entities[token.string.split(':')[1]].labels.en.value;
             type = getType(token.string);
+            if(type.getTypeName()=='prefixedIri'){
+                console.log(isInList(ENTITY_TYPES,type.prefix.prefixValue))
+                if(isInList(ENTITY_TYPES,type.prefix.prefixValue)){
+                    let entity = await getTypeByID(token.string);
+                    label = entity.entities[token.string.split(':')[1]].labels.en.value;
+                    break;
+                }
+            }   
+            label = type.value;
         }
         if(token.type == 'constraint' || token.type == 'constraintKeyword' ){
             let entity = await getTypeByID(token.string);
@@ -329,7 +354,7 @@ function getConstraint(def) {
     }
     type = getType(def);
     //Is it a Primitive?
-    if(type.getTypeName() == 'prefixedIri' && isPrimitive(type.value)){
+    if(type.getTypeName() == 'prefixedIri' && isInList(PRIMITIVES,type.value)){
         let kind = def.split(':')[1];
         return new Primitive(kind);
     }
@@ -421,15 +446,14 @@ function getPrefixValue(defPrefixes,prefixName){
 }
 
 
-function isPrimitive(value) {
-    for(let prim in PRIMITIVES){
-        if(PRIMITIVES[prim] == value){
+function isInList(list,value) {
+    for(let prim in list){
+        if(list[prim] == value){
             return true;
         }
     }
     return false;
 }
-
 
 function getRefName(token) {
     return token.split('@')[1];
