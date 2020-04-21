@@ -72,7 +72,9 @@ function EditorComp() {
             });
 
             y.on('keyup', function() {
-                showConvert();
+                if(!isLoading){
+                    showConvert();
+                }
             }); 
 
             y.on('prefixChange', function(prefixes,width) {
