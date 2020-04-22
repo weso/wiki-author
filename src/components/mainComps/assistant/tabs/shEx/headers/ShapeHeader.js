@@ -67,7 +67,7 @@ function ShapeHeader (props) {
                     style={styles.collapse}
                     onClick={collapseTriples} 
                     disabled={disabled}
-                    title="Triple Constraints">
+                    title="Properties">
                     {colapseBtn}
             </button>
         </div>

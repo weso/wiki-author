@@ -75,7 +75,7 @@ function ShapeComponent (props) {
                                 style={styles.addTriple} 
                                 onClick={addTriple} 
                                 disabled={disabled}
-                                title="Add Triple">
+                                title="Add Property">
                                 + Property
                         </button>        
                     
