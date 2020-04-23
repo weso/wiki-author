@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c07ccb042838a692e23a39e32f23c1a5",
+    "revision": "671ebbee4ab6536547285c83033b04a4",
     "url": "/wiki-author/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/wiki-author/static/css/2.e053c324.chunk.css"
   },
   {
-    "revision": "a9bb830fb8476bc64f54",
+    "revision": "96b1de44177eebe460d7",
     "url": "/wiki-author/static/css/main.d6f5180b.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/wiki-author/static/js/2.5d3145b6.chunk.js"
   },
   {
-    "revision": "a9bb830fb8476bc64f54",
-    "url": "/wiki-author/static/js/main.fb108e1f.chunk.js"
+    "revision": "96b1de44177eebe460d7",
+    "url": "/wiki-author/static/js/main.500e3ad9.chunk.js"
   },
   {
     "revision": "7e5f7d6b856310bfd913",
