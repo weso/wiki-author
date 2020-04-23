@@ -90,7 +90,7 @@ function ConstraintCont (props) {
                                     style={styles.add} 
                                     onClick={addValueSet} 
                                     title="Add Triple">
-                                    + Constraint
+                                    + Entity
                         </button>
                     </div>         
                                                
